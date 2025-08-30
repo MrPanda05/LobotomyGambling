@@ -1,0 +1,178 @@
+[gd_scene load_steps=14 format=3 uid="uid://1xwlmtgr22y3"]
+
+[ext_resource type="Texture2D" uid="uid://djo7acop0d488" path="res://icon.svg" id="1_col26"]
+[ext_resource type="Script" uid="uid://cb8ycc7d7cxo5" path="res://Char/Player.cs" id="1_i7lnh"]
+[ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="2_v57ht"]
+[ext_resource type="Script" uid="uid://cagfunlxupppg" path="res://Char/States/Playing.cs" id="4_nohbc"]
+[ext_resource type="PackedScene" uid="uid://cf5i24p68tfpj" path="res://Gun/GunManager.tscn" id="5_4ar4p"]
+[ext_resource type="Script" uid="uid://b788dno4bfele" path="res://Char/Debug/DebugUi.cs" id="6_blmmp"]
+[ext_resource type="Script" uid="uid://cbhcl5sqk8wna" path="res://Char/States/ExitingDoor.cs" id="7_4bgxc"]
+[ext_resource type="Script" uid="uid://cc7ra3rsmfvv7" path="res://Char/Debug/DebugWindow.cs" id="7_j0qh7"]
+[ext_resource type="Script" uid="uid://dsbs3e43hoxnh" path="res://Char/States/MiniGame.cs" id="7_pyd8o"]
+[ext_resource type="PackedScene" uid="uid://dmnmypbmd1j2j" path="res://Commons/Components/HealthComponent.tscn" id="8_l20iv"]
+[ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="9_346cp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col26"]
+size = Vector2(51, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bgxc"]
+size = Vector2(42, 89)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 32
+collision_mask = 129
+collision_priority = 1.1
+script = ExtResource("1_i7lnh")
+Speed = 350.0
+Acel = 150.0
+Decel = 200.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("8_l20iv")]
+RoundToInt = true
+MaxHealth = 3.0
+Health = 3.0
+
+[node name="GunManager" parent="." instance=ExtResource("5_4ar4p")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 17)
+scale = Vector2(0.4, 0.734375)
+texture = ExtResource("1_col26")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 33)
+shape = SubResource("RectangleShape2D_col26")
+
+[node name="FSM" parent="." instance=ExtResource("2_v57ht")]
+InitialState = NodePath("Playing")
+
+[node name="Playing" type="Node" parent="FSM"]
+script = ExtResource("4_nohbc")
+
+[node name="Dead" type="Node" parent="FSM"]
+
+[node name="MiniGame" type="Node" parent="FSM"]
+script = ExtResource("7_pyd8o")
+
+[node name="Paused" type="Node" parent="FSM"]
+
+[node name="ExitingDoor" type="Node" parent="FSM"]
+script = ExtResource("7_4bgxc")
+
+[node name="Timer" type="Timer" parent="FSM/ExitingDoor"]
+wait_time = 0.06
+one_shot = true
+
+[node name="DebugUI" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("6_blmmp")
+
+[node name="Control" type="Control" parent="DebugUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 632.0
+offset_bottom = 372.0
+
+[node name="DebugWindow" type="Panel" parent="DebugUI/Control" node_paths=PackedStringArray("_player", "_gun", "_bullet", "_button")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_j0qh7")
+_player = NodePath("PlayerDebug")
+_gun = NodePath("GunDebug2")
+_bullet = NodePath("BulletDebug3")
+_button = NodePath("MenuButton")
+
+[node name="PlayerDebug" type="Panel" parent="DebugUI/Control/DebugWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DebugUI/Control/DebugWindow/PlayerDebug"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Player debug"
+
+[node name="GunDebug2" type="Panel" parent="DebugUI/Control/DebugWindow"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DebugUI/Control/DebugWindow/GunDebug2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_right = 41.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "GunDebug"
+
+[node name="BulletDebug3" type="Panel" parent="DebugUI/Control/DebugWindow"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DebugUI/Control/DebugWindow/BulletDebug3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "BulletDebug"
+
+[node name="MenuButton" type="MenuButton" parent="DebugUI/Control/DebugWindow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -31.0
+offset_right = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press me"
+item_count = 3
+popup/item_0/text = "Player"
+popup/item_0/id = 0
+popup/item_1/text = "Gun"
+popup/item_1/id = 1
+popup/item_2/text = "Bullet"
+popup/item_2/id = 2
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("9_346cp")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 14.5)
+shape = SubResource("RectangleShape2D_4bgxc")
+debug_color = Color(0.787414, 0.161646, 0.962849, 0.42)
+
+[connection signal="timeout" from="FSM/ExitingDoor/Timer" to="FSM/ExitingDoor" method="OnTimerTimeout"]
+[connection signal="button_down" from="DebugUI/Control/DebugWindow/MenuButton" to="DebugUI/Control/DebugWindow" method="OnMenuButtonButtonDown"]

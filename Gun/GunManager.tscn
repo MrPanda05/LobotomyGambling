@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf5i24p68tfpj"]
+
+[ext_resource type="Script" uid="uid://dihfdqpoqhqt8" path="res://Gun/GunManager.cs" id="1_raq06"]
+[ext_resource type="Script" uid="uid://dmb88qbj61mgc" path="res://Gun/GunFactory.cs" id="2_cbg4a"]
+[ext_resource type="Script" uid="uid://b2ubh04p8r3nb" path="res://Gun/GunHolder.cs" id="2_sfebr"]
+
+[node name="GunManager" type="Node2D"]
+script = ExtResource("1_raq06")
+
+[node name="GunHolder" type="Node2D" parent="."]
+script = ExtResource("2_sfebr")
+
+[node name="GunFactory" type="Node" parent="."]
+script = ExtResource("2_cbg4a")
+WeaponsPath = PackedStringArray("res://Gun/Weapons/ShotGun.tscn")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2o62y0ipeexj"]
+
+[ext_resource type="Script" uid="uid://chq633dg1r2xs" path="res://Commons/FiniteStateMachine/FSM.cs" id="1_xs378"]
+
+[node name="FSM" type="Node"]
+script = ExtResource("1_xs378")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://6dgdg4nvmeej"]
+
+[ext_resource type="Script" uid="uid://c335m8ajs3l5q" path="res://Levels/Rooms/Door.cs" id="1_q4wsj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wsj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03foo"]
+size = Vector2(32, 28)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_q4wsj")
+
+[node name="DoorTrigger" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+shape = SubResource("RectangleShape2D_q4wsj")
+
+[node name="DoorSolid" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorSolid"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_03foo")
+
+[connection signal="body_entered" from="DoorTrigger" to="." method="OnDoorTriggerBodyEntered"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemySource" load_steps=2 format=3 uid="uid://b28rcv5d8vbmw"]
+
+[ext_resource type="Script" uid="uid://b4d70jffexbxi" path="res://Enemies/EnemySource.cs" id="1_1c0ck"]
+
+[resource]
+script = ExtResource("1_1c0ck")
+EnemyName = "Slime"
+MaxHealth = 10.0
+Speed = 100.0
+Damage = 1
+AttackRange = 20.0
+AttackCooldown = 1.0
+metadata/_custom_type_script = "uid://b4d70jffexbxi"

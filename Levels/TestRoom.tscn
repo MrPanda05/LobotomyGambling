@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbx0ik6tisf3c"]
+
+[ext_resource type="Script" uid="uid://bj140rve5p8um" path="res://Levels/Rooms/BaseRoom.cs" id="1_1e415"]
+
+[node name="TestRoom" type="Node2D" node_paths=PackedStringArray("_doors")]
+script = ExtResource("1_1e415")
+_doors = []

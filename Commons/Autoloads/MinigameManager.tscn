@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcaaan0v4qlvk"]
+
+[ext_resource type="Script" uid="uid://cped3qssee1p8" path="res://Commons/Autoloads/MinigameManager.cs" id="1_w7s13"]
+[ext_resource type="PackedScene" uid="uid://ci64hnbop8an3" path="res://Minigames/LobotomyMinigame.tscn" id="2_2nryy"]
+
+[node name="MinigameManager" type="Node"]
+script = ExtResource("1_w7s13")
+MiniGames = Array[PackedScene]([ExtResource("2_2nryy")])

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dscp2ul67s06l"]
+
+[ext_resource type="Script" uid="uid://gvkhswvhval5" path="res://Test/Scriptorder.gd" id="1_y8ip7"]
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_y8ip7")
+
+[node name="ChildA" type="Node2D" parent="."]
+script = ExtResource("1_y8ip7")
+
+[node name="GrandChildA" type="Node2D" parent="ChildA"]
+script = ExtResource("1_y8ip7")
+
+[node name="ChildB" type="Node2D" parent="."]
+script = ExtResource("1_y8ip7")
+
+[node name="GrandChildB" type="Node2D" parent="ChildB"]
+script = ExtResource("1_y8ip7")
+
+[node name="ChildC" type="Node2D" parent="."]
+script = ExtResource("1_y8ip7")
+
+[node name="GrandChildC" type="Node2D" parent="ChildC"]
+script = ExtResource("1_y8ip7")
