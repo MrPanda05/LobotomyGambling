@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LesshpMoredmg" load_steps=2 format=3 uid="uid://p6b4d8fgn5he"]
+
+[ext_resource type="Script" uid="uid://2d7fki1bq6b2" path="res://Upgrades/LesshpMoredmg.cs" id="1_p62lh"]
+
+[resource]
+script = ExtResource("1_p62lh")
+HealthDecrease = 1.0
+DamageMultiplier = 1.2
+EffectDescription = "Less health, more speed"
+metadata/_custom_type_script = "uid://2d7fki1bq6b2"

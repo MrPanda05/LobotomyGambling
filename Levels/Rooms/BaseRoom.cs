@@ -29,6 +29,14 @@ namespace Levels.Rooms
         public override void _Ready()
         {
             //set player pos
+            if(_roomArea == null)
+            {
+                _roomArea = GetNodeOrNull<Area2D>("RoomArea");
+                if(_roomArea == null)
+                {
+                    GD.PushWarning("RoomArea is not set for room: " + Name);
+                }
+            }
             _levelManager = GetParent<LevelManager>();
             foreach (var item in GetChildren())
             {
@@ -49,6 +57,17 @@ namespace Levels.Rooms
             this._roomArea.BodyEntered += OnRoomAreaBodyEntered;
             this._roomArea.BodyExited += OnRoomAreaBodyExited;
             GD.Print("Enemies in room: " + _enemies.Count);
+            if (!FirstRoom)
+            {
+                foreach (var item in GetChildren())
+                {
+                    if (item is Area2D)
+                    {
+                        continue;
+                    }
+                    item.ProcessMode = ProcessModeEnum.Disabled;
+                }
+            }
         }
         public void OnRoomAreaBodyEntered(Node2D player)
         {
@@ -74,12 +93,28 @@ namespace Levels.Rooms
             }
         }
 
-        public void OnRoomEnter()
+        public virtual void OnRoomEnter()
         {
+            foreach (var item in GetChildren())
+            {
+                if (item is Area2D)
+                {
+                    continue;
+                }
+                item.ProcessMode = ProcessModeEnum.Inherit;
+            }
             GD.Print("Entered room: " + Name);
         }
-        public void OnRoomExit()
+        public virtual void OnRoomExit()
         {
+            foreach (var item in GetChildren())
+            {
+                if(item is Area2D)
+                {
+                    continue;
+                }
+                    item.ProcessMode = ProcessModeEnum.Disabled;
+            }
             GD.Print("Exited room: " + Name);
         }
     }

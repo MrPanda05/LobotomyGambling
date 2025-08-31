@@ -14,6 +14,8 @@ namespace Gun.Weapons
         private Timer _fireRateTimer;
         [Export]
         private Marker2D _spawnLocation;
+        [Export]
+        private AudioStreamPlayer shotSound;
 
         override public void _Ready()
         {
@@ -40,6 +42,7 @@ namespace Gun.Weapons
             var bulletScene = GunResource.BulletScene;
             Position = direction * 33;
             SetGunRotation(direction);
+            shotSound.Play();
             for (int i = 0; i < GunResource.Pellets; i++)
             {
                 var spreadAngle = (float)GD.RandRange(-spreadShot, spreadShot); // Adjust spread angle as needed

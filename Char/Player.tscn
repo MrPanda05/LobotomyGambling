@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://1xwlmtgr22y3"]
+[gd_scene load_steps=17 format=3 uid="uid://1xwlmtgr22y3"]
 
-[ext_resource type="Texture2D" uid="uid://djo7acop0d488" path="res://icon.svg" id="1_col26"]
 [ext_resource type="Script" uid="uid://cb8ycc7d7cxo5" path="res://Char/Player.cs" id="1_i7lnh"]
 [ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="2_v57ht"]
 [ext_resource type="Script" uid="uid://cagfunlxupppg" path="res://Char/States/Playing.cs" id="4_nohbc"]
+[ext_resource type="Texture2D" uid="uid://d0ul2eeifddcv" path="res://Art/player.png" id="4_pyd8o"]
 [ext_resource type="PackedScene" uid="uid://cf5i24p68tfpj" path="res://Gun/GunManager.tscn" id="5_4ar4p"]
 [ext_resource type="Script" uid="uid://b788dno4bfele" path="res://Char/Debug/DebugUi.cs" id="6_blmmp"]
 [ext_resource type="Script" uid="uid://cbhcl5sqk8wna" path="res://Char/States/ExitingDoor.cs" id="7_4bgxc"]
@@ -11,21 +11,28 @@
 [ext_resource type="Script" uid="uid://dsbs3e43hoxnh" path="res://Char/States/MiniGame.cs" id="7_pyd8o"]
 [ext_resource type="PackedScene" uid="uid://dmnmypbmd1j2j" path="res://Commons/Components/HealthComponent.tscn" id="8_l20iv"]
 [ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="9_346cp"]
+[ext_resource type="Script" uid="uid://be1wp1tngpcgs" path="res://Char/HeathContainer.cs" id="12_o15ra"]
+[ext_resource type="PackedScene" uid="uid://g1tdo44o4lb" path="res://Char/HeartUI.tscn" id="13_o15ra"]
+[ext_resource type="AudioStream" uid="uid://df0vo8wkmrux" path="res://Sounds/hitHurt2.wav" id="14_4bnfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_col26"]
-size = Vector2(51, 62)
+size = Vector2(39, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bgxc"]
-size = Vector2(42, 89)
+size = Vector2(32, 85)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_hurtSound", "_imunityTimer") groups=["Player"]]
 collision_layer = 32
-collision_mask = 129
+collision_mask = 1153
 collision_priority = 1.1
 script = ExtResource("1_i7lnh")
 Speed = 350.0
 Acel = 150.0
 Decel = 200.0
+_hurtSound = NodePath("AudioStreamPlayer")
+_imunityTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_l20iv")]
 RoundToInt = true
@@ -35,12 +42,11 @@ Health = 3.0
 [node name="GunManager" parent="." instance=ExtResource("5_4ar4p")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 17)
-scale = Vector2(0.4, 0.734375)
-texture = ExtResource("1_col26")
+scale = Vector2(3.925, 3.925)
+texture = ExtResource("4_pyd8o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 33)
+position = Vector2(-3.5, 26.5)
 shape = SubResource("RectangleShape2D_col26")
 
 [node name="FSM" parent="." instance=ExtResource("2_v57ht")]
@@ -167,12 +173,38 @@ popup/item_2/text = "Bullet"
 popup/item_2/id = 2
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("9_346cp")]
+position = Vector2(0, -12)
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 14.5)
+position = Vector2(-3, 16.5)
 shape = SubResource("RectangleShape2D_4bgxc")
 debug_color = Color(0.787414, 0.161646, 0.962849, 0.42)
 
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="UINode" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeathContainer" type="HBoxContainer" parent="UI/UINode" node_paths=PackedStringArray("_player")]
+layout_mode = 0
+offset_right = 886.0
+offset_bottom = 174.0
+scale = Vector2(0.23, 0.23)
+script = ExtResource("12_o15ra")
+HeartScene = ExtResource("13_o15ra")
+_player = NodePath("../../..")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_4bnfu")
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="timeout" from="FSM/ExitingDoor/Timer" to="FSM/ExitingDoor" method="OnTimerTimeout"]
 [connection signal="button_down" from="DebugUI/Control/DebugWindow/MenuButton" to="DebugUI/Control/DebugWindow" method="OnMenuButtonButtonDown"]

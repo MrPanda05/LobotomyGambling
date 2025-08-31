@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LessdmgMorespd" load_steps=2 format=3 uid="uid://c0ihp48mc40e6"]
+
+[ext_resource type="Script" uid="uid://bmv27umtfn5da" path="res://Upgrades/LessdmgMorespd.cs" id="1_a5k2m"]
+
+[resource]
+script = ExtResource("1_a5k2m")
+DamageMultiplier = 0.75
+SpeedMultiplier = 1.25
+EffectDescription = "Less damage, more speed"
+metadata/_custom_type_script = "uid://bmv27umtfn5da"

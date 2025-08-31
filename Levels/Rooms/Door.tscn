@@ -1,26 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://6dgdg4nvmeej"]
+[gd_scene load_steps=6 format=3 uid="uid://6dgdg4nvmeej"]
 
 [ext_resource type="Script" uid="uid://c335m8ajs3l5q" path="res://Levels/Rooms/Door.cs" id="1_q4wsj"]
+[ext_resource type="Texture2D" uid="uid://bcd1ka7fr6hg2" path="res://Art/Opendoor.png" id="2_fg6s3"]
+[ext_resource type="Texture2D" uid="uid://cnm7klxu07837" path="res://Art/Closedoor.png" id="3_1r1co"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wsj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03foo"]
-size = Vector2(32, 28)
+size = Vector2(30, 28)
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("_doorSprite")]
 script = ExtResource("1_q4wsj")
+_openDoor = ExtResource("2_fg6s3")
+_closeDoor = ExtResource("3_1r1co")
+_doorSprite = NodePath("Sprite2D")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(1.722, 1.455)
+texture = ExtResource("3_1r1co")
 
 [node name="DoorTrigger" type="Area2D" parent="."]
 collision_layer = 512
 collision_mask = 32
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
 shape = SubResource("RectangleShape2D_q4wsj")
+metadata/_edit_lock_ = true
 
 [node name="DoorSolid" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorSolid"]
-position = Vector2(-1, 1)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_03foo")
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="DoorTrigger" to="." method="OnDoorTriggerBodyEntered"]

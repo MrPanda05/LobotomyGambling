@@ -1,0 +1,729 @@
+[gd_scene load_steps=32 format=4 uid="uid://cntaxec6gtjri"]
+
+[ext_resource type="PackedScene" uid="uid://1xwlmtgr22y3" path="res://Char/Player.tscn" id="1_dl8mf"]
+[ext_resource type="PackedScene" uid="uid://cx6vr0snuqt63" path="res://Cameras/DugeonCamera.tscn" id="1_w77jt"]
+[ext_resource type="PackedScene" uid="uid://bp6invn1uemwl" path="res://Levels/LevelManager.tscn" id="2_3anf8"]
+[ext_resource type="PackedScene" uid="uid://jwfne875ggfk" path="res://Levels/Rooms/fourdoor/room4d1.tscn" id="3_fhqol"]
+[ext_resource type="Script" uid="uid://bj140rve5p8um" path="res://Levels/Rooms/BaseRoom.cs" id="3_iotdp"]
+[ext_resource type="PackedScene" uid="uid://b4b3f7uujlymm" path="res://Levels/Rooms/RoomArea.tscn" id="5_nutv8"]
+[ext_resource type="PackedScene" uid="uid://6dgdg4nvmeej" path="res://Levels/Rooms/Door.tscn" id="6_05pb0"]
+[ext_resource type="PackedScene" uid="uid://cwn8ohkiexh0" path="res://Levels/Rooms/threedoor/Room3d2.tscn" id="8_xcayt"]
+[ext_resource type="PackedScene" uid="uid://d06je4bybunup" path="res://Enemies/EnemiesList/Skeleton.tscn" id="9_k7tvq"]
+[ext_resource type="PackedScene" uid="uid://4p5o61gpdmev" path="res://Levels/Rooms/threedoor/Room3d5.tscn" id="9_p5226"]
+[ext_resource type="PackedScene" uid="uid://7kfm8pjq8kiw" path="res://Levels/Rooms/threedoor/Room3d6.tscn" id="10_tuji2"]
+[ext_resource type="PackedScene" uid="uid://cs8yfkiy088fo" path="res://Levels/Rooms/threedoor/Room3d4.tscn" id="11_f5cpa"]
+[ext_resource type="PackedScene" uid="uid://m6he7e7sysj8" path="res://Levels/Rooms/onedoor/Room1d1.tscn" id="12_f5cpa"]
+[ext_resource type="PackedScene" uid="uid://c0iummkcut58o" path="res://Levels/Rooms/onedoor/Room1d2.tscn" id="13_104vp"]
+[ext_resource type="PackedScene" uid="uid://c5hmje65ox6kl" path="res://Enemies/EnemiesList/SlimeBlue.tscn" id="14_62xmr"]
+[ext_resource type="PackedScene" uid="uid://jh5fi3f2ftim" path="res://Levels/Rooms/twodoor/Room2d3.tscn" id="14_104vp"]
+[ext_resource type="PackedScene" uid="uid://dbnyhxx26kcut" path="res://Levels/Rooms/twodoor/Room2d8.tscn" id="15_3momc"]
+[ext_resource type="PackedScene" uid="uid://cig72i5yqhsnb" path="res://Levels/Rooms/twodoor/Room2d4.tscn" id="16_sbm5j"]
+[ext_resource type="PackedScene" uid="uid://ndqrga6155eh" path="res://Enemies/EnemiesList/SlimeGreen.tscn" id="17_2pfgx"]
+[ext_resource type="PackedScene" uid="uid://damlrt76gtt5l" path="res://Levels/Rooms/onedoor/Room1d8.tscn" id="17_p2sgf"]
+[ext_resource type="PackedScene" uid="uid://bfgkpv74x0i2k" path="res://Levels/Rooms/twodoor/Room2d7.tscn" id="18_ufevr"]
+[ext_resource type="PackedScene" uid="uid://da2ij0on3utlm" path="res://Levels/Rooms/twodoor/Room2d9.tscn" id="19_gmnjr"]
+[ext_resource type="PackedScene" uid="uid://dra4q2u1plcst" path="res://Levels/Rooms/fourdoor/Room4d3.tscn" id="20_qg0tc"]
+[ext_resource type="PackedScene" uid="uid://betiok0d7qoyv" path="res://Levels/Rooms/onedoor/Room1d6.tscn" id="21_13mt1"]
+[ext_resource type="PackedScene" uid="uid://h4moo3pofv2r" path="res://Levels/Rooms/onedoor/Room1d10.tscn" id="22_pp47a"]
+[ext_resource type="TileSet" uid="uid://dr8dyvj41rr0e" path="res://Levels/Rooms/roomtileset.tres" id="23_idi36"]
+[ext_resource type="PackedScene" uid="uid://b4dm6yr7w1277" path="res://Pickups/LobotomyPickup.tscn" id="24_8ubki"]
+[ext_resource type="PackedScene" uid="uid://fjtdgucsyosm" path="res://Enemies/EnemiesList/RedBall.tscn" id="24_d73st"]
+[ext_resource type="PackedScene" uid="uid://cphlt5ewf3t8v" path="res://Enemies/EnemiesList/WhiteSlime.tscn" id="25_jd565"]
+[ext_resource type="PackedScene" uid="uid://drgvt41102dbw" path="res://Levels/Rooms/onedoor/Room1d7.tscn" id="29_jd565"]
+[ext_resource type="Script" uid="uid://ivhant6bhcsi" path="res://Levels/BossRoom.cs" id="29_ruoxf"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_dl8mf")]
+position = Vector2(77, 193)
+scale = Vector2(0.4, 0.4)
+
+[node name="DugeonCamera" parent="." instance=ExtResource("1_w77jt")]
+_tilesToMoveX = 42
+_tilesToMoveY = 25
+
+[node name="LevelManager" parent="." instance=ExtResource("2_3anf8")]
+
+[node name="FirstRoom" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors", "_roomArea")]
+script = ExtResource("3_iotdp")
+_doors = []
+FirstRoom = true
+_roomArea = NodePath("RoomArea")
+
+[node name="room4d1" parent="LevelManager/FirstRoom" instance=ExtResource("3_fhqol")]
+
+[node name="RoomArea" parent="LevelManager/FirstRoom" instance=ExtResource("5_nutv8")]
+position = Vector2(320, 184)
+
+[node name="DoorUp" parent="LevelManager/FirstRoom" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(319, 15)
+LikedDoor = NodePath("../../Room/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/FirstRoom/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="DoorRight" parent="LevelManager/FirstRoom" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(624, 191)
+LikedDoor = NodePath("../../Room2/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/FirstRoom/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorDown" parent="LevelManager/FirstRoom" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(320, 351)
+LikedDoor = NodePath("../../Room4/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/FirstRoom/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="DoorLeft" parent="LevelManager/FirstRoom" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(16, 191)
+LikedDoor = NodePath("../../Room7/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/FirstRoom/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="Room" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room3d2" parent="LevelManager/Room" instance=ExtResource("8_xcayt")]
+position = Vector2(0, -400)
+
+[node name="RoomArea" parent="LevelManager/Room" instance=ExtResource("5_nutv8")]
+position = Vector2(320, -216)
+
+[node name="DoorRight" parent="LevelManager/Room" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(624, -208)
+LikedDoor = NodePath("../../Room8/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorDown" parent="LevelManager/Room" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(320, -48)
+LikedDoor = NodePath("../../FirstRoom/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="DoorLeft" parent="LevelManager/Room" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(16, -208)
+LikedDoor = NodePath("../../Room5/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="Skeleton2" parent="LevelManager/Room" instance=ExtResource("9_k7tvq")]
+position = Vector2(345, -318)
+
+[node name="Room2" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room3d5" parent="LevelManager/Room2" instance=ExtResource("9_p5226")]
+position = Vector2(672, 0)
+
+[node name="RoomArea" parent="LevelManager/Room2" instance=ExtResource("5_nutv8")]
+position = Vector2(992, 184)
+
+[node name="DoorUp" parent="LevelManager/Room2" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(991, 15)
+LikedDoor = NodePath("../../Room8/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room2/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="DoorRight" parent="LevelManager/Room2" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1296, 191)
+LikedDoor = NodePath("../../Room3/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room2/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorLeft" parent="LevelManager/Room2" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(688, 191)
+LikedDoor = NodePath("../../FirstRoom/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room2/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="RedBall2" parent="LevelManager/Room2" instance=ExtResource("24_d73st")]
+position = Vector2(859, 106)
+
+[node name="RedBall3" parent="LevelManager/Room2" instance=ExtResource("24_d73st")]
+position = Vector2(1134, 96)
+
+[node name="Room3" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room3d6" parent="LevelManager/Room3" instance=ExtResource("10_tuji2")]
+position = Vector2(1344, 0)
+
+[node name="RoomArea" parent="LevelManager/Room3" instance=ExtResource("5_nutv8")]
+position = Vector2(1664, 184)
+
+[node name="DoorUp" parent="LevelManager/Room3" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1663, 16)
+LikedDoor = NodePath("../../Room9/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room3/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="DoorRight" parent="LevelManager/Room3" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1968, 192)
+LikedDoor = NodePath("../../Room10/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room3/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorLeft" parent="LevelManager/Room3" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1360, 192)
+LikedDoor = NodePath("../../Room2/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room3/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="RedBall" parent="LevelManager/Room3" instance=ExtResource("24_d73st")]
+position = Vector2(1458, 252)
+
+[node name="RedBall2" parent="LevelManager/Room3" instance=ExtResource("24_d73st")]
+position = Vector2(1501, 144)
+
+[node name="RedBall3" parent="LevelManager/Room3" instance=ExtResource("24_d73st")]
+position = Vector2(1658, 180)
+
+[node name="RedBall4" parent="LevelManager/Room3" instance=ExtResource("24_d73st")]
+position = Vector2(1711, 293)
+
+[node name="RedBall5" parent="LevelManager/Room3" instance=ExtResource("24_d73st")]
+position = Vector2(1849, 193)
+
+[node name="RedBall6" parent="LevelManager/Room3" instance=ExtResource("24_d73st")]
+position = Vector2(1821, 61)
+
+[node name="Room4" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room3d4" parent="LevelManager/Room4" instance=ExtResource("11_f5cpa")]
+position = Vector2(0, 400)
+
+[node name="RoomArea" parent="LevelManager/Room4" instance=ExtResource("5_nutv8")]
+position = Vector2(320, 584)
+
+[node name="DoorUp" parent="LevelManager/Room4" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(319, 416)
+LikedDoor = NodePath("../../FirstRoom/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room4/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="DoorRight" parent="LevelManager/Room4" instance=ExtResource("6_05pb0")]
+position = Vector2(624, 592)
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room4/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorLeft" parent="LevelManager/Room4" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(16, 592)
+LikedDoor = NodePath("../../Room6/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room4/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="SlimeBlue" parent="LevelManager/Room4" instance=ExtResource("14_62xmr")]
+position = Vector2(200, 646)
+
+[node name="SlimeBlue2" parent="LevelManager/Room4" instance=ExtResource("14_62xmr")]
+position = Vector2(415, 649)
+
+[node name="Room5" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room1d1" parent="LevelManager/Room5" instance=ExtResource("12_f5cpa")]
+position = Vector2(-672, -400)
+
+[node name="RoomArea" parent="LevelManager/Room5" instance=ExtResource("5_nutv8")]
+position = Vector2(-352, -216)
+
+[node name="DoorRight" parent="LevelManager/Room5" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-48, -208)
+LikedDoor = NodePath("../../Room/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room5/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="Skeleton" parent="LevelManager/Room5" instance=ExtResource("9_k7tvq")]
+position = Vector2(-431, -297)
+
+[node name="Skeleton2" parent="LevelManager/Room5" instance=ExtResource("9_k7tvq")]
+position = Vector2(-450, -111)
+
+[node name="Room6" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room1d2" parent="LevelManager/Room6" instance=ExtResource("13_104vp")]
+position = Vector2(-672, 400)
+
+[node name="RoomArea" parent="LevelManager/Room6" instance=ExtResource("5_nutv8")]
+position = Vector2(-352, 584)
+
+[node name="DoorRight" parent="LevelManager/Room6" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-48, 592)
+LikedDoor = NodePath("../../Room4/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room6/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="SlimeGreen" parent="LevelManager/Room6" instance=ExtResource("17_2pfgx")]
+position = Vector2(-307, 675)
+
+[node name="SlimeGreen2" parent="LevelManager/Room6" instance=ExtResource("17_2pfgx")]
+position = Vector2(-345, 572)
+
+[node name="SlimeGreen3" parent="LevelManager/Room6" instance=ExtResource("17_2pfgx")]
+position = Vector2(-528, 638)
+
+[node name="Room7" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room2d3" parent="LevelManager/Room7" instance=ExtResource("14_104vp")]
+position = Vector2(-672, 0)
+
+[node name="RoomArea" parent="LevelManager/Room7" instance=ExtResource("5_nutv8")]
+position = Vector2(-352, 184)
+
+[node name="DoorRight" parent="LevelManager/Room7" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-48, 192)
+LikedDoor = NodePath("../../FirstRoom/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room7/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorLeft" parent="LevelManager/Room7" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-656, 192)
+LikedDoor = NodePath("../../Room11/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room7/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="Skeleton" parent="LevelManager/Room7" instance=ExtResource("9_k7tvq")]
+position = Vector2(-583, 91)
+
+[node name="Skeleton2" parent="LevelManager/Room7" instance=ExtResource("9_k7tvq")]
+position = Vector2(-583, 208)
+
+[node name="Room8" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room2d8" parent="LevelManager/Room8" instance=ExtResource("15_3momc")]
+position = Vector2(672, -400)
+
+[node name="RoomArea" parent="LevelManager/Room8" instance=ExtResource("5_nutv8")]
+position = Vector2(992, -216)
+
+[node name="DoorDown" parent="LevelManager/Room8" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(992, -48)
+LikedDoor = NodePath("../../Room2/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room8/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="DoorLeft" parent="LevelManager/Room8" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(688, -208)
+LikedDoor = NodePath("../../Room/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room8/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="SlimeBlue" parent="LevelManager/Room8" instance=ExtResource("14_62xmr")]
+position = Vector2(828, -109)
+
+[node name="SlimeBlue2" parent="LevelManager/Room8" instance=ExtResource("14_62xmr")]
+position = Vector2(1005, -245)
+
+[node name="SlimeBlue3" parent="LevelManager/Room8" instance=ExtResource("14_62xmr")]
+position = Vector2(1196, -128)
+
+[node name="Room9" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room2d4" parent="LevelManager/Room9" instance=ExtResource("16_sbm5j")]
+position = Vector2(1344, -400)
+
+[node name="RoomArea" parent="LevelManager/Room9" instance=ExtResource("5_nutv8")]
+position = Vector2(1664, -216)
+
+[node name="DoorUp" parent="LevelManager/Room9" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1663, -384)
+LikedDoor = NodePath("../../Room12/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room9/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="DoorDown" parent="LevelManager/Room9" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1664, -48)
+LikedDoor = NodePath("../../Room3/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room9/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="Skeleton" parent="LevelManager/Room9" instance=ExtResource("9_k7tvq")]
+position = Vector2(1919, -247)
+
+[node name="Skeleton2" parent="LevelManager/Room9" instance=ExtResource("9_k7tvq")]
+position = Vector2(1921, -211)
+
+[node name="Skeleton3" parent="LevelManager/Room9" instance=ExtResource("9_k7tvq")]
+position = Vector2(1922, -166)
+
+[node name="Room10" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room1d8" parent="LevelManager/Room10" instance=ExtResource("17_p2sgf")]
+position = Vector2(2016, 0)
+
+[node name="RoomArea" parent="LevelManager/Room10" instance=ExtResource("5_nutv8")]
+position = Vector2(2336, 184)
+
+[node name="DoorLeft" parent="LevelManager/Room10" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(2032, 192)
+LikedDoor = NodePath("../../Room3/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room10/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="LobotomyPickup" parent="LevelManager/Room10" instance=ExtResource("24_8ubki")]
+position = Vector2(2296, 178)
+
+[node name="Room11" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room2d7" parent="LevelManager/Room11" instance=ExtResource("18_ufevr")]
+position = Vector2(-1344, 0)
+
+[node name="RoomArea" parent="LevelManager/Room11" instance=ExtResource("5_nutv8")]
+position = Vector2(-1024, 184)
+
+[node name="DoorRight" parent="LevelManager/Room11" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-720, 192)
+LikedDoor = NodePath("../../Room7/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room11/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorLeft" parent="LevelManager/Room11" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-1328, 192)
+LikedDoor = NodePath("../../Room14/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room11/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="SlimeGreen" parent="LevelManager/Room11" instance=ExtResource("17_2pfgx")]
+position = Vector2(-1244, 284)
+
+[node name="RedBall" parent="LevelManager/Room11" instance=ExtResource("24_d73st")]
+position = Vector2(-902, 68)
+
+[node name="Skeleton" parent="LevelManager/Room11" instance=ExtResource("9_k7tvq")]
+position = Vector2(-1220, 93)
+
+[node name="Room12" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room2d9" parent="LevelManager/Room12" instance=ExtResource("19_gmnjr")]
+position = Vector2(1344, -800)
+
+[node name="RoomArea" parent="LevelManager/Room12" instance=ExtResource("5_nutv8")]
+position = Vector2(1664, -616)
+
+[node name="DoorRight" parent="LevelManager/Room12" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1968, -608)
+LikedDoor = NodePath("../../Room13/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room12/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorDown" parent="LevelManager/Room12" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(1664, -448)
+LikedDoor = NodePath("../../Room9/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room12/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="Room13" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room2d3" parent="LevelManager/Room13" instance=ExtResource("14_104vp")]
+position = Vector2(2016, -800)
+
+[node name="RoomArea" parent="LevelManager/Room13" instance=ExtResource("5_nutv8")]
+position = Vector2(2336, -616)
+
+[node name="DoorRight" parent="LevelManager/Room13" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(2640, -608)
+LikedDoor = NodePath("../../BossRoom/Door")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room13/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorLeft" parent="LevelManager/Room13" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(2032, -608)
+LikedDoor = NodePath("../../Room12/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room13/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="Skeleton" parent="LevelManager/Room13" instance=ExtResource("9_k7tvq")]
+position = Vector2(2493, -519)
+
+[node name="Skeleton2" parent="LevelManager/Room13" instance=ExtResource("9_k7tvq")]
+position = Vector2(2494, -649)
+
+[node name="WhiteSlime" parent="LevelManager/Room13" instance=ExtResource("25_jd565")]
+position = Vector2(2566, -515)
+
+[node name="WhiteSlime2" parent="LevelManager/Room13" instance=ExtResource("25_jd565")]
+position = Vector2(2568, -728)
+
+[node name="Room14" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room4d3" parent="LevelManager/Room14" instance=ExtResource("20_qg0tc")]
+position = Vector2(-2016, 0)
+
+[node name="RoomArea" parent="LevelManager/Room14" instance=ExtResource("5_nutv8")]
+position = Vector2(-1696, 184)
+
+[node name="DoorUp" parent="LevelManager/Room14" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-1697, 16)
+LikedDoor = NodePath("../../Room16/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room14/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="DoorRight" parent="LevelManager/Room14" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-1392, 192)
+LikedDoor = NodePath("../../Room11/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room14/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="DoorDown" parent="LevelManager/Room14" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-1696, 352)
+LikedDoor = NodePath("../../Room17/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room14/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="DoorLeft" parent="LevelManager/Room14" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-2000, 192)
+LikedDoor = NodePath("../../Room15/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room14/DoorLeft"]
+position = Vector2(48, 1)
+
+[node name="WhiteSlime" parent="LevelManager/Room14" instance=ExtResource("25_jd565")]
+position = Vector2(-1916, 285)
+
+[node name="WhiteSlime2" parent="LevelManager/Room14" instance=ExtResource("25_jd565")]
+position = Vector2(-1893, 114)
+
+[node name="WhiteSlime3" parent="LevelManager/Room14" instance=ExtResource("25_jd565")]
+position = Vector2(-1773, 308)
+
+[node name="Room15" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room1d1" parent="LevelManager/Room15" instance=ExtResource("12_f5cpa")]
+position = Vector2(-2688, 0)
+
+[node name="RoomArea" parent="LevelManager/Room15" instance=ExtResource("5_nutv8")]
+position = Vector2(-2368, 184)
+
+[node name="DoorRight" parent="LevelManager/Room15" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-2064, 192)
+LikedDoor = NodePath("../../Room14/DoorLeft")
+ChangeDirection = Vector2(1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room15/DoorRight"]
+position = Vector2(-48, 1)
+
+[node name="SlimeBlue" parent="LevelManager/Room15" instance=ExtResource("14_62xmr")]
+position = Vector2(-2461, 296)
+
+[node name="SlimeGreen" parent="LevelManager/Room15" instance=ExtResource("17_2pfgx")]
+position = Vector2(-2253, 291)
+
+[node name="WhiteSlime" parent="LevelManager/Room15" instance=ExtResource("25_jd565")]
+position = Vector2(-2520, 134)
+
+[node name="SlimeBlue2" parent="LevelManager/Room15" instance=ExtResource("14_62xmr")]
+position = Vector2(-2311, 119)
+
+[node name="Room16" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room1d6" parent="LevelManager/Room16" instance=ExtResource("21_13mt1")]
+position = Vector2(-2016, -400)
+
+[node name="RoomArea" parent="LevelManager/Room16" instance=ExtResource("5_nutv8")]
+position = Vector2(-1696, -216)
+
+[node name="DoorDown" parent="LevelManager/Room16" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-1696, -48)
+LikedDoor = NodePath("../../Room14/DoorUp")
+ChangeDirection = Vector2(0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room16/DoorDown"]
+position = Vector2(0, -39)
+
+[node name="LobotomyPickup" parent="LevelManager/Room16" instance=ExtResource("24_8ubki")]
+position = Vector2(-1701, -303)
+
+[node name="Room17" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("3_iotdp")
+_doors = []
+
+[node name="Room1d10" parent="LevelManager/Room17" instance=ExtResource("22_pp47a")]
+position = Vector2(-2016, 400)
+
+[node name="RoomArea" parent="LevelManager/Room17" instance=ExtResource("5_nutv8")]
+position = Vector2(-1696, 584)
+
+[node name="DoorUp" parent="LevelManager/Room17" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(-1697, 416)
+LikedDoor = NodePath("../../Room14/DoorDown")
+ChangeDirection = Vector2(0, -1)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/Room17/DoorUp"]
+position = Vector2(1, 41)
+
+[node name="Skeleton" parent="LevelManager/Room17" instance=ExtResource("9_k7tvq")]
+position = Vector2(-1813, 690)
+
+[node name="Skeleton2" parent="LevelManager/Room17" instance=ExtResource("9_k7tvq")]
+position = Vector2(-1626, 704)
+
+[node name="Skeleton3" parent="LevelManager/Room17" instance=ExtResource("9_k7tvq")]
+position = Vector2(-1947, 474)
+
+[node name="Skeleton4" parent="LevelManager/Room17" instance=ExtResource("9_k7tvq")]
+position = Vector2(-1454, 466)
+
+[node name="BossRoom" type="Node2D" parent="LevelManager" node_paths=PackedStringArray("_doors")]
+script = ExtResource("29_ruoxf")
+_doors = []
+
+[node name="Room1d7" parent="LevelManager/BossRoom" instance=ExtResource("29_jd565")]
+position = Vector2(2688, -800)
+
+[node name="RoomArea" parent="LevelManager/BossRoom" instance=ExtResource("5_nutv8")]
+position = Vector2(3008, -619)
+
+[node name="RedBall" parent="LevelManager/BossRoom" instance=ExtResource("24_d73st")]
+position = Vector2(2920, -566)
+
+[node name="Skeleton" parent="LevelManager/BossRoom" instance=ExtResource("9_k7tvq")]
+position = Vector2(3164, -736)
+
+[node name="Skeleton2" parent="LevelManager/BossRoom" instance=ExtResource("9_k7tvq")]
+position = Vector2(3166, -552)
+
+[node name="SlimeBlue" parent="LevelManager/BossRoom" instance=ExtResource("14_62xmr")]
+position = Vector2(2778, -720)
+
+[node name="SlimeBlue2" parent="LevelManager/BossRoom" instance=ExtResource("14_62xmr")]
+position = Vector2(2780, -495)
+
+[node name="SlimeGreen" parent="LevelManager/BossRoom" instance=ExtResource("17_2pfgx")]
+position = Vector2(2903, -499)
+
+[node name="SlimeGreen2" parent="LevelManager/BossRoom" instance=ExtResource("17_2pfgx")]
+position = Vector2(2921, -718)
+
+[node name="RedBall2" parent="LevelManager/BossRoom" instance=ExtResource("24_d73st")]
+position = Vector2(2855, -645)
+
+[node name="RedBall3" parent="LevelManager/BossRoom" instance=ExtResource("24_d73st")]
+position = Vector2(3064, -511)
+
+[node name="SlimeGreen3" parent="LevelManager/BossRoom" instance=ExtResource("17_2pfgx")]
+position = Vector2(3087, -670)
+
+[node name="WhiteSlime" parent="LevelManager/BossRoom" instance=ExtResource("25_jd565")]
+position = Vector2(3115, -610)
+
+[node name="WhiteSlime2" parent="LevelManager/BossRoom" instance=ExtResource("25_jd565")]
+position = Vector2(3005, -712)
+
+[node name="WhiteSlime3" parent="LevelManager/BossRoom" instance=ExtResource("25_jd565")]
+position = Vector2(3263, -508)
+
+[node name="Door" parent="LevelManager/BossRoom" node_paths=PackedStringArray("LikedDoor") instance=ExtResource("6_05pb0")]
+position = Vector2(2704, -607)
+LikedDoor = NodePath("../../Room13/DoorRight")
+ChangeDirection = Vector2(-1, 0)
+
+[node name="Marker2D" type="Marker2D" parent="LevelManager/BossRoom/Door"]
+position = Vector2(32, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="LevelManager"]
+tile_map_data = PackedByteArray("AADW//7/BAABAAAAAADW////BAABAAAAAADX//7/BAABAAAAAADX////BAABAAAAAADY//7/BAABAAAAAADY////BAABAAAAAADZ//7/BAABAAAAAADZ////BAABAAAAAADa//7/BAABAAAAAADa////BAABAAAAAADb//7/BAABAAAAAADb////BAABAAAAAADc//7/BAABAAAAAADc////BAABAAAAAADd//7/BAABAAAAAADd////BAABAAAAAADe//7/BAABAAAAAADe////BAABAAAAAADf//7/BAABAAAAAADf////BAABAAAAAADg//7/BAABAAAAAADg////BAABAAAAAADh//7/BAABAAAAAADh////BAABAAAAAADi//7/BAABAAAAAADi////BAABAAAAAADj//7/BAABAAAAAADj////BAABAAAAAADk//7/BAABAAAAAADk////BAABAAAAAADl//7/BAABAAAAAADl////BAABAAAAAADm//7/BAABAAAAAADm////BAABAAAAAADn//7/BAABAAAAAADn////BAABAAAAAADo//7/BAABAAAAAADo////BAABAAAAAADp//7/BAABAAAAAADp////BAABAAAAAADq//7/BAABAAAAAADq////BAABAAAAAADr//7/BAABAAAAAADr////BAABAAAAAADs//7/BAABAAAAAADs////BAABAAAAAADt//7/BAABAAAAAADt////BAABAAAAAADu//7/BAABAAAAAADu////BAABAAAAAADv//7/BAABAAAAAADv////BAABAAAAAADw//7/BAABAAAAAADw////BAABAAAAAADx//7/BAABAAAAAADx////BAABAAAAAADy//7/BAABAAAAAADy////BAABAAAAAADz//7/BAABAAAAAADz////BAABAAAAAAD0//7/BAABAAAAAAD0////BAABAAAAAAD1//7/BAABAAAAAAD1////BAABAAAAAAD2//7/BAABAAAAAAD2////BAABAAAAAAD3//7/BAABAAAAAAD3////BAABAAAAAAD4//7/BAABAAAAAAD4////BAABAAAAAAD5//7/BAABAAAAAAD5////BAABAAAAAAD6//7/BAABAAAAAAD6////BAABAAAAAAD7//7/BAABAAAAAAD7////BAABAAAAAAD8//7/BAABAAAAAAD8////BAABAAAAAAD9//7/BAABAAAAAAD9////BAABAAAAAAD+//7/BAABAAAAAAD+////BAABAAAAAAD///7/BAABAAAAAAD/////BAABAAAAAAAAAP7/BAABAAAAAAAAAP//BAABAAAAAAABAP7/BAABAAAAAAABAP//BAABAAAAAAACAP7/BAABAAAAAAACAP//BAABAAAAAAADAP7/BAABAAAAAAADAP//BAABAAAAAAAEAP7/BAABAAAAAAAEAP//BAABAAAAAAAFAP7/BAABAAAAAAAFAP//BAABAAAAAAAGAP7/BAABAAAAAAAGAP//BAABAAAAAAAHAP7/BAABAAAAAAAHAP//BAABAAAAAAAIAP7/BAABAAAAAAAIAP//BAABAAAAAAAJAP7/BAABAAAAAAAJAP//BAABAAAAAAAKAP7/BAABAAAAAAAKAP//BAABAAAAAAALAP7/BAABAAAAAAALAP//BAABAAAAAAAMAP7/BAABAAAAAAAMAP//BAABAAAAAAANAP7/BAABAAAAAAANAP//BAABAAAAAAAOAP7/BAABAAAAAAAOAP//BAABAAAAAAAPAP7/BAABAAAAAAAPAP//BAABAAAAAAAQAP7/BAABAAAAAAAQAP//BAABAAAAAAARAP7/BAABAAAAAAARAP//BAABAAAAAAASAP7/BAABAAAAAAASAP//BAABAAAAAAATAP7/BAABAAAAAAATAP//BAABAAAAAAAUAP7/BAABAAAAAAAUAP//BAABAAAAAAAVAP7/BAABAAAAAAAVAP//BAABAAAAAAAWAP7/BAABAAAAAAAWAP//BAABAAAAAAAXAP7/BAABAAAAAAAXAP//BAABAAAAAAAYAP7/BAABAAAAAAAYAP//BAABAAAAAAAZAP7/BAABAAAAAAAZAP//BAABAAAAAAAaAP7/BAABAAAAAAAaAP//BAABAAAAAAAbAP7/BAABAAAAAAAbAP//BAABAAAAAAAcAP7/BAABAAAAAAAcAP//BAABAAAAAAAdAP7/BAABAAAAAAAdAP//BAABAAAAAAAeAP7/BAABAAAAAAAeAP//BAABAAAAAAAfAP7/BAABAAAAAAAfAP//BAABAAAAAAAgAP7/BAABAAAAAAAgAP//BAABAAAAAAAhAP7/BAABAAAAAAAhAP//BAABAAAAAAAiAP7/BAABAAAAAAAiAP//BAABAAAAAAAjAP7/BAABAAAAAAAjAP//BAABAAAAAAAkAP7/BAABAAAAAAAkAP//BAABAAAAAAAlAP7/BAABAAAAAAAlAP//BAABAAAAAAAmAP7/BAABAAAAAAAmAP//BAABAAAAAAAnAP7/BAABAAAAAAAnAP//BAABAAAAAAAoAP7/BAABAAAAAAAoAP//BAABAAAAAAApAP7/BAABAAAAAAApAP//BAABAAAAAAAqAP7/BAABAAAAAAAqAP//BAABAAAAAAArAP7/BAABAAAAAAArAP//BAABAAAAAAAsAP7/BAABAAAAAAAsAP//BAABAAAAAAAtAP7/BAABAAAAAAAtAP//BAABAAAAAAAuAP7/BAABAAAAAAAuAP//BAABAAAAAAAvAP7/BAABAAAAAAAvAP//BAABAAAAAAAwAP7/BAABAAAAAAAwAP//BAABAAAAAAAxAP7/BAABAAAAAAAxAP//BAABAAAAAAAyAP7/BAABAAAAAAAyAP//BAABAAAAAAAzAP7/BAABAAAAAAAzAP//BAABAAAAAAA0AP7/BAABAAAAAAA0AP//BAABAAAAAAA1AP7/BAABAAAAAAA1AP//BAABAAAAAAA2AP7/BAABAAAAAAA2AP//BAABAAAAAAA3AP7/BAABAAAAAAA3AP//BAABAAAAAAA4AP7/BAABAAAAAAA4AP//BAABAAAAAAA5AP7/BAABAAAAAAA5AP//BAABAAAAAAA6AP7/BAABAAAAAAA6AP//BAABAAAAAAA7AP7/BAABAAAAAAA7AP//BAABAAAAAAA8AP7/BAABAAAAAAA8AP//BAABAAAAAAA9AP7/BAABAAAAAAA9AP//BAABAAAAAAA+AP7/BAABAAAAAAA+AP//BAABAAAAAAA/AP7/BAABAAAAAAA/AP//BAABAAAAAABAAP7/BAABAAAAAABAAP//BAABAAAAAABBAP7/BAABAAAAAABBAP//BAABAAAAAABCAP7/BAABAAAAAABCAP//BAABAAAAAABDAP7/BAABAAAAAABDAP//BAABAAAAAABEAP7/BAABAAAAAABEAP//BAABAAAAAABFAP7/BAABAAAAAABFAP//BAABAAAAAABGAP7/BAABAAAAAABGAP//BAABAAAAAABHAP7/BAABAAAAAABHAP//BAABAAAAAABIAP7/BAABAAAAAABIAP//BAABAAAAAABJAP7/BAABAAAAAABJAP//BAABAAAAAABKAP7/BAABAAAAAABKAP//BAABAAAAAABLAP7/BAABAAAAAABLAP//BAABAAAAAABMAP7/BAABAAAAAABMAP//BAABAAAAAABNAP7/BAABAAAAAABNAP//BAABAAAAAABOAP7/BAABAAAAAABOAP//BAABAAAAAABPAP7/BAABAAAAAABPAP//BAABAAAAAABQAP7/BAABAAAAAABQAP//BAABAAAAAABRAP7/BAABAAAAAABRAP//BAABAAAAAABSAP7/BAABAAAAAABSAP//BAABAAAAAABTAP7/BAABAAAAAABTAP//BAABAAAAAABUAP7/BAABAAAAAABUAP//BAABAAAAAABVAP7/BAABAAAAAABVAP//BAABAAAAAABWAP7/BAABAAAAAABWAP//BAABAAAAAABXAP7/BAABAAAAAABXAP//BAABAAAAAABYAP7/BAABAAAAAABYAP//BAABAAAAAABZAP7/BAABAAAAAABZAP//BAABAAAAAABaAP7/BAABAAAAAABaAP//BAABAAAAAABbAP7/BAABAAAAAABbAP//BAABAAAAAABcAP7/BAABAAAAAABcAP//BAABAAAAAABdAP7/BAABAAAAAABdAP//BAABAAAAAABeAP7/BAABAAAAAABeAP//BAABAAAAAABfAP7/BAABAAAAAABfAP//BAABAAAAAABgAP7/BAABAAAAAABgAP//BAABAAAAAABhAP7/BAABAAAAAABhAP//BAABAAAAAABiAP7/BAABAAAAAABiAP//BAABAAAAAABjAP7/BAABAAAAAABjAP//BAABAAAAAABkAP7/BAABAAAAAABkAP//BAABAAAAAABlAP7/BAABAAAAAABlAP//BAABAAAAAABmAP7/BAABAAAAAABmAP//BAABAAAAAABnAP7/BAABAAAAAABnAP//BAABAAAAAABoAP7/BAABAAAAAABoAP//BAABAAAAAABpAP7/BAABAAAAAABpAP//BAABAAAAAABqAP7/BAABAAAAAABqAP//BAABAAAAAABrAP7/BAABAAAAAABrAP//BAABAAAAAABsAP7/BAABAAAAAABsAP//BAABAAAAAABtAP7/BAABAAAAAABtAP//BAABAAAAAABuAP7/BAABAAAAAABuAP//BAABAAAAAABvAP7/BAABAAAAAABvAP//BAABAAAAAABwAP7/BAABAAAAAABwAP//BAABAAAAAABxAP7/BAABAAAAAABxAP//BAABAAAAAAByAP7/BAABAAAAAAByAP//BAABAAAAAABzAP7/BAABAAAAAABzAP//BAABAAAAAAB0AP7/BAABAAAAAAB0AP//BAABAAAAAAB1AP7/BAABAAAAAAB1AP//BAABAAAAAAB2AP7/BAABAAAAAAB2AP//BAABAAAAAAB3AP7/BAABAAAAAAB3AP//BAABAAAAAAB4AP7/BAABAAAAAAB4AP//BAABAAAAAAB5AP7/BAABAAAAAAB5AP//BAABAAAAAAB6AP7/BAABAAAAAAB6AP//BAABAAAAAAB7AP7/BAABAAAAAAB7AP//BAABAAAAAAB8AP7/BAABAAAAAAB8AP//BAABAAAAAAB9AP7/BAABAAAAAAB9AP//BAABAAAAAAB+AP7/BAABAAAAAAB+AP//BAABAAAAAAB/AP7/BAABAAAAAAB/AP//BAABAAAAAACAAP7/BAABAAAAAACAAP//BAABAAAAAACBAP7/BAABAAAAAACBAP//BAABAAAAAACCAP7/BAABAAAAAACCAP//BAABAAAAAACDAP7/BAABAAAAAACDAP//BAABAAAAAACEAP7/BAABAAAAAACEAP//BAABAAAAAACFAP7/BAABAAAAAACFAP//BAABAAAAAACGAP7/BAABAAAAAACGAP//BAABAAAAAACHAP7/BAABAAAAAACHAP//BAABAAAAAACIAP7/BAABAAAAAACIAP//BAABAAAAAACJAP7/BAABAAAAAACJAP//BAABAAAAAACKAP7/BAABAAAAAACKAP//BAABAAAAAACLAP7/BAABAAAAAACLAP//BAABAAAAAACMAP7/BAABAAAAAACMAP//BAABAAAAAACNAP7/BAABAAAAAACNAP//BAABAAAAAACOAP7/BAABAAAAAACOAP//BAABAAAAAACPAP7/BAABAAAAAACPAP//BAABAAAAAACQAP7/BAABAAAAAACQAP//BAABAAAAAACRAP7/BAABAAAAAACRAP//BAABAAAAAACSAP7/BAABAAAAAACSAP//BAABAAAAAACTAP7/BAABAAAAAACTAP//BAABAAAAAACUAP7/BAABAAAAAACUAP//BAABAAAAAACVAP7/BAABAAAAAACVAP//BAABAAAAAACWAP7/BAABAAAAAACWAP//BAABAAAAAACXAP7/BAABAAAAAACXAP//BAABAAAAAACYAP7/BAABAAAAAACYAP//BAABAAAAAACZAP7/BAABAAAAAACZAP//BAABAAAAAACaAP7/BAABAAAAAACaAP//BAABAAAAAACbAP7/BAABAAAAAACbAP//BAABAAAAAACcAP7/BAABAAAAAACcAP//BAABAAAAAACdAP7/BAABAAAAAACdAP//BAABAAAAAACeAP7/BAABAAAAAACeAP//BAABAAAAAACfAP7/BAABAAAAAACfAP//BAABAAAAAACgAP7/BAABAAAAAACgAP//BAABAAAAAAChAP7/BAABAAAAAAChAP//BAABAAAAAACiAP7/BAABAAAAAACiAP//BAABAAAAAACjAP7/BAABAAAAAACjAP//BAABAAAAAACkAP7/BAABAAAAAACkAP//BAABAAAAAAClAP7/BAABAAAAAAClAP//BAABAAAAAAB8AM7/BAABAAAAAAB8AM//BAABAAAAAAB8AND/BAABAAAAAAB8ANH/BAABAAAAAAB8ANL/BAABAAAAAAB8ANP/BAABAAAAAAB8ANT/BAABAAAAAAB8ANX/BAABAAAAAAB8ANb/BAABAAAAAAB8ANf/BAABAAAAAAB8ANj/BAABAAAAAAB8ANn/BAABAAAAAAB8ANr/BAABAAAAAAB8ANv/BAABAAAAAAB8ANz/BAABAAAAAAB8AN3/BAABAAAAAAB8AN7/BAABAAAAAAB8AN//BAABAAAAAAB8AOD/BAABAAAAAAB8AOH/BAABAAAAAAB8AOL/BAABAAAAAAB8AOP/BAABAAAAAAB8AOT/BAABAAAAAAB8AOX/BAABAAAAAAB8AOb/BAABAAAAAAB8AOf/BAABAAAAAAB8AOj/BAABAAAAAAB8AOn/BAABAAAAAAB8AOr/BAABAAAAAAB8AOv/BAABAAAAAAB8AOz/BAABAAAAAAB8AO3/BAABAAAAAAB8AO7/BAABAAAAAAB8AO//BAABAAAAAAB8APD/BAABAAAAAAB8APH/BAABAAAAAAB8APL/BAABAAAAAAB8APP/BAABAAAAAAB8APT/BAABAAAAAAB8APX/BAABAAAAAAB8APb/BAABAAAAAAB8APf/BAABAAAAAAB8APj/BAABAAAAAAB8APn/BAABAAAAAAB8APr/BAABAAAAAAB8APv/BAABAAAAAAB8APz/BAABAAAAAAB8AP3/BAABAAAAAAB8AAAABAABAAAAAAB8AAEABAABAAAAAAB8AAIABAABAAAAAAB8AAMABAABAAAAAAB8AAQABAABAAAAAAB8AAUABAABAAAAAAB8AAYABAABAAAAAAB8AAcABAABAAAAAAB8AAgABAABAAAAAAB8AAkABAABAAAAAAB8AAoABAABAAAAAAB8AAsABAABAAAAAAB8AAwABAABAAAAAAB8AA0ABAABAAAAAAB8AA4ABAABAAAAAAB8AA8ABAABAAAAAAB8ABAABAABAAAAAAB8ABEABAABAAAAAAB8ABIABAABAAAAAAB8ABMABAABAAAAAAB8ABQABAABAAAAAAB8ABUABAABAAAAAAB8ABYABAABAAAAAAB9AM7/BAABAAAAAAB9AM//BAABAAAAAAB9AND/BAABAAAAAAB9ANH/BAABAAAAAAB9ANL/BAABAAAAAAB9ANP/BAABAAAAAAB9ANT/BAABAAAAAAB9ANX/BAABAAAAAAB9ANb/BAABAAAAAAB9ANf/BAABAAAAAAB9ANj/BAABAAAAAAB9ANn/BAABAAAAAAB9ANr/BAABAAAAAAB9ANv/BAABAAAAAAB9ANz/BAABAAAAAAB9AN3/BAABAAAAAAB9AN7/BAABAAAAAAB9AN//BAABAAAAAAB9AOD/BAABAAAAAAB9AOH/BAABAAAAAAB9AOL/BAABAAAAAAB9AOP/BAABAAAAAAB9AOT/BAABAAAAAAB9AOX/BAABAAAAAAB9AOb/BAABAAAAAAB9AOf/BAABAAAAAAB9AOj/BAABAAAAAAB9AOn/BAABAAAAAAB9AOr/BAABAAAAAAB9AOv/BAABAAAAAAB9AOz/BAABAAAAAAB9AO3/BAABAAAAAAB9AO7/BAABAAAAAAB9AO//BAABAAAAAAB9APD/BAABAAAAAAB9APH/BAABAAAAAAB9APL/BAABAAAAAAB9APP/BAABAAAAAAB9APT/BAABAAAAAAB9APX/BAABAAAAAAB9APb/BAABAAAAAAB9APf/BAABAAAAAAB9APj/BAABAAAAAAB9APn/BAABAAAAAAB9APr/BAABAAAAAAB9APv/BAABAAAAAAB9APz/BAABAAAAAAB9AP3/BAABAAAAAAB9AAAABAABAAAAAAB9AAEABAABAAAAAAB9AAIABAABAAAAAAB9AAMABAABAAAAAAB9AAQABAABAAAAAAB9AAUABAABAAAAAAB9AAYABAABAAAAAAB9AAcABAABAAAAAAB9AAgABAABAAAAAAB9AAkABAABAAAAAAB9AAoABAABAAAAAAB9AAsABAABAAAAAAB9AAwABAABAAAAAAB9AA0ABAABAAAAAAB9AA4ABAABAAAAAAB9AA8ABAABAAAAAAB9ABAABAABAAAAAAB9ABEABAABAAAAAAB9ABIABAABAAAAAAB9ABMABAABAAAAAAB9ABQABAABAAAAAAB9ABUABAABAAAAAAB9ABYABAABAAAAAABSAOP/BAABAAAAAABSAOT/BAABAAAAAABSAOX/BAABAAAAAABSAOb/BAABAAAAAABSAOf/BAABAAAAAABSAOj/BAABAAAAAABSAOn/BAABAAAAAABSAOr/BAABAAAAAABSAOv/BAABAAAAAABSAOz/BAABAAAAAABSAO3/BAABAAAAAABSAO7/BAABAAAAAABSAO//BAABAAAAAABSAPD/BAABAAAAAABSAPH/BAABAAAAAABSAPL/BAABAAAAAABSAPP/BAABAAAAAABSAPT/BAABAAAAAABSAPX/BAABAAAAAABSAPb/BAABAAAAAABSAPf/BAABAAAAAABSAPj/BAABAAAAAABSAPn/BAABAAAAAABSAPr/BAABAAAAAABSAPv/BAABAAAAAABSAPz/BAABAAAAAABSAP3/BAABAAAAAABTAOP/BAABAAAAAABTAOT/BAABAAAAAABTAOX/BAABAAAAAABTAOb/BAABAAAAAABTAOf/BAABAAAAAABTAOj/BAABAAAAAABTAOn/BAABAAAAAABTAOr/BAABAAAAAABTAOv/BAABAAAAAABTAOz/BAABAAAAAABTAO3/BAABAAAAAABTAO7/BAABAAAAAABTAO//BAABAAAAAABTAPD/BAABAAAAAABTAPH/BAABAAAAAABTAPL/BAABAAAAAABTAPP/BAABAAAAAABTAPT/BAABAAAAAABTAPX/BAABAAAAAABTAPb/BAABAAAAAABTAPf/BAABAAAAAABTAPj/BAABAAAAAABTAPn/BAABAAAAAABTAPr/BAABAAAAAABTAPv/BAABAAAAAABTAPz/BAABAAAAAABTAP3/BAABAAAAAABSAM7/BAABAAAAAABSAM//BAABAAAAAABSAND/BAABAAAAAABSANH/BAABAAAAAABSANL/BAABAAAAAABSANP/BAABAAAAAABSANT/BAABAAAAAABSANX/BAABAAAAAABSANb/BAABAAAAAABSANf/BAABAAAAAABSANj/BAABAAAAAABSANn/BAABAAAAAABSANr/BAABAAAAAABSANv/BAABAAAAAABSANz/BAABAAAAAABSAN3/BAABAAAAAABSAN7/BAABAAAAAABSAN//BAABAAAAAABSAOD/BAABAAAAAABSAOH/BAABAAAAAABSAOL/BAABAAAAAABTAM7/BAABAAAAAABTAM//BAABAAAAAABTAND/BAABAAAAAABTANH/BAABAAAAAABTANL/BAABAAAAAABTANP/BAABAAAAAABTANT/BAABAAAAAABTANX/BAABAAAAAABTANb/BAABAAAAAABTANf/BAABAAAAAABTANj/BAABAAAAAABTANn/BAABAAAAAABTANr/BAABAAAAAABTANv/BAABAAAAAABTANz/BAABAAAAAABTAN3/BAABAAAAAABTAN7/BAABAAAAAABTAN//BAABAAAAAABTAOD/BAABAAAAAABTAOH/BAABAAAAAABTAOL/BAABAAAAAABUAOX/BAABAAAAAABUAOb/BAABAAAAAABVAOX/BAABAAAAAABVAOb/BAABAAAAAABWAOX/BAABAAAAAABWAOb/BAABAAAAAABXAOX/BAABAAAAAABXAOb/BAABAAAAAABYAOX/BAABAAAAAABYAOb/BAABAAAAAABZAOX/BAABAAAAAABZAOb/BAABAAAAAABaAOX/BAABAAAAAABaAOb/BAABAAAAAABbAOX/BAABAAAAAABbAOb/BAABAAAAAABcAOX/BAABAAAAAABcAOb/BAABAAAAAABdAOX/BAABAAAAAABdAOb/BAABAAAAAABeAOX/BAABAAAAAABeAOb/BAABAAAAAABfAOX/BAABAAAAAABfAOb/BAABAAAAAABgAOX/BAABAAAAAABgAOb/BAABAAAAAABhAOX/BAABAAAAAABhAOb/BAABAAAAAABiAOX/BAABAAAAAABiAOb/BAABAAAAAABjAOX/BAABAAAAAABjAOb/BAABAAAAAABkAOX/BAABAAAAAABkAOb/BAABAAAAAABlAOX/BAABAAAAAABlAOb/BAABAAAAAABmAOX/BAABAAAAAABmAOb/BAABAAAAAABnAOX/BAABAAAAAABnAOb/BAABAAAAAABoAOX/BAABAAAAAABoAOb/BAABAAAAAABpAOX/BAABAAAAAABpAOb/BAABAAAAAABqAOX/BAABAAAAAABqAOb/BAABAAAAAABrAOX/BAABAAAAAABrAOb/BAABAAAAAABsAOX/BAABAAAAAABsAOb/BAABAAAAAABtAOX/BAABAAAAAABtAOb/BAABAAAAAABuAOX/BAABAAAAAABuAOb/BAABAAAAAABvAOX/BAABAAAAAABvAOb/BAABAAAAAABwAOX/BAABAAAAAABwAOb/BAABAAAAAABxAOX/BAABAAAAAABxAOb/BAABAAAAAAByAOX/BAABAAAAAAByAOb/BAABAAAAAABzAOX/BAABAAAAAABzAOb/BAABAAAAAAB0AOX/BAABAAAAAAB0AOb/BAABAAAAAAB1AOX/BAABAAAAAAB1AOb/BAABAAAAAAB2AOX/BAABAAAAAAB2AOb/BAABAAAAAAB3AOX/BAABAAAAAAB3AOb/BAABAAAAAAB4AOX/BAABAAAAAAB4AOb/BAABAAAAAAB5AOX/BAABAAAAAAB5AOb/BAABAAAAAAB6AOX/BAABAAAAAAB6AOb/BAABAAAAAAB7AOX/BAABAAAAAAB7AOb/BAABAAAAAABSAAAABAABAAAAAABSAAEABAABAAAAAABSAAIABAABAAAAAABSAAMABAABAAAAAABSAAQABAABAAAAAABSAAUABAABAAAAAABSAAYABAABAAAAAABSAAcABAABAAAAAABSAAgABAABAAAAAABSAAkABAABAAAAAABSAAoABAABAAAAAABSAAsABAABAAAAAABSAAwABAABAAAAAABSAA0ABAABAAAAAABSAA4ABAABAAAAAABSAA8ABAABAAAAAABSABAABAABAAAAAABSABEABAABAAAAAABSABIABAABAAAAAABSABMABAABAAAAAABSABQABAABAAAAAABSABUABAABAAAAAABSABYABAABAAAAAABTAAAABAABAAAAAABTAAEABAABAAAAAABTAAIABAABAAAAAABTAAMABAABAAAAAABTAAQABAABAAAAAABTAAUABAABAAAAAABTAAYABAABAAAAAABTAAcABAABAAAAAABTAAgABAABAAAAAABTAAkABAABAAAAAABTAAoABAABAAAAAABTAAsABAABAAAAAABTAAwABAABAAAAAABTAA0ABAABAAAAAABTAA4ABAABAAAAAABTAA8ABAABAAAAAABTABAABAABAAAAAABTABEABAABAAAAAABTABIABAABAAAAAABTABMABAABAAAAAABTABQABAABAAAAAABTABUABAABAAAAAABTABYABAABAAAAAAAoAAAABAABAAAAAAAoAAEABAABAAAAAAAoAAIABAABAAAAAAAoAAMABAABAAAAAAAoAAQABAABAAAAAAAoAAUABAABAAAAAAAoAAYABAABAAAAAAAoAAcABAABAAAAAAAoAAgABAABAAAAAAAoAAkABAABAAAAAAAoAAoABAABAAAAAAAoAAsABAABAAAAAAAoAAwABAABAAAAAAAoAA0ABAABAAAAAAAoAA4ABAABAAAAAAAoAA8ABAABAAAAAAAoABAABAABAAAAAAAoABEABAABAAAAAAAoABIABAABAAAAAAAoABMABAABAAAAAAAoABQABAABAAAAAAAoABUABAABAAAAAAAoABYABAABAAAAAAAoABcABAABAAAAAAAoABgABAABAAAAAAApAAAABAABAAAAAAApAAEABAABAAAAAAApAAIABAABAAAAAAApAAMABAABAAAAAAApAAQABAABAAAAAAApAAUABAABAAAAAAApAAYABAABAAAAAAApAAcABAABAAAAAAApAAgABAABAAAAAAApAAkABAABAAAAAAApAAoABAABAAAAAAApAAsABAABAAAAAAApAAwABAABAAAAAAApAA0ABAABAAAAAAApAA4ABAABAAAAAAApAA8ABAABAAAAAAApABAABAABAAAAAAApABEABAABAAAAAAApABIABAABAAAAAAApABMABAABAAAAAAApABQABAABAAAAAAApABUABAABAAAAAAApABYABAABAAAAAAApABcABAABAAAAAAApABgABAABAAAAAAD8/xcABAABAAAAAAD8/xgABAABAAAAAAD9/xcABAABAAAAAAD9/xgABAABAAAAAAD+/xcABAABAAAAAAD+/xgABAABAAAAAAD//xcABAABAAAAAAD//xgABAABAAAAAAAAABcABAABAAAAAAAAABgABAABAAAAAAABABcABAABAAAAAAABABgABAABAAAAAAACABcABAABAAAAAAACABgABAABAAAAAAADABcABAABAAAAAAADABgABAABAAAAAAAEABcABAABAAAAAAAEABgABAABAAAAAAAFABcABAABAAAAAAAFABgABAABAAAAAAAGABcABAABAAAAAAAGABgABAABAAAAAAAHABcABAABAAAAAAAHABgABAABAAAAAAAIABcABAABAAAAAAAIABgABAABAAAAAAAJABcABAABAAAAAAAJABgABAABAAAAAAAKABcABAABAAAAAAAKABgABAABAAAAAAALABcABAABAAAAAAALABgABAABAAAAAAAMABcABAABAAAAAAAMABgABAABAAAAAAANABcABAABAAAAAAANABgABAABAAAAAAAOABcABAABAAAAAAAOABgABAABAAAAAAAPABcABAABAAAAAAAPABgABAABAAAAAAAQABcABAABAAAAAAAQABgABAABAAAAAAARABcABAABAAAAAAARABgABAABAAAAAAASABcABAABAAAAAAASABgABAABAAAAAAATABcABAABAAAAAAATABgABAABAAAAAAAUABcABAABAAAAAAAUABgABAABAAAAAAAVABcABAABAAAAAAAVABgABAABAAAAAAAWABcABAABAAAAAAAWABgABAABAAAAAAAXABcABAABAAAAAAAXABgABAABAAAAAAAYABcABAABAAAAAAAYABgABAABAAAAAAAZABcABAABAAAAAAAZABgABAABAAAAAAAaABcABAABAAAAAAAaABgABAABAAAAAAAbABcABAABAAAAAAAbABgABAABAAAAAAAcABcABAABAAAAAAAcABgABAABAAAAAAAdABcABAABAAAAAAAdABgABAABAAAAAAAeABcABAABAAAAAAAeABgABAABAAAAAAAfABcABAABAAAAAAAfABgABAABAAAAAAAgABcABAABAAAAAAAgABgABAABAAAAAAAhABcABAABAAAAAAAhABgABAABAAAAAAAiABcABAABAAAAAAAiABgABAABAAAAAAAjABcABAABAAAAAAAjABgABAABAAAAAAAkABcABAABAAAAAAAkABgABAABAAAAAAAlABcABAABAAAAAAAlABgABAABAAAAAAAmABcABAABAAAAAAAmABgABAABAAAAAAAnABcABAABAAAAAAAnABgABAABAAAAAAD+/xkABAABAAAAAAD+/xoABAABAAAAAAD+/xsABAABAAAAAAD+/xwABAABAAAAAAD+/x0ABAABAAAAAAD+/x4ABAABAAAAAAD+/x8ABAABAAAAAAD+/yAABAABAAAAAAD+/yEABAABAAAAAAD+/yIABAABAAAAAAD+/yMABAABAAAAAAD+/yQABAABAAAAAAD+/yUABAABAAAAAAD+/yYABAABAAAAAAD+/ycABAABAAAAAAD+/ygABAABAAAAAAD+/ykABAABAAAAAAD+/yoABAABAAAAAAD+/ysABAABAAAAAAD+/ywABAABAAAAAAD+/y0ABAABAAAAAAD+/y4ABAABAAAAAAD+/y8ABAABAAAAAAD//xkABAABAAAAAAD//xoABAABAAAAAAD//xsABAABAAAAAAD//xwABAABAAAAAAD//x0ABAABAAAAAAD//x4ABAABAAAAAAD//x8ABAABAAAAAAD//yAABAABAAAAAAD//yEABAABAAAAAAD//yIABAABAAAAAAD//yMABAABAAAAAAD//yQABAABAAAAAAD//yUABAABAAAAAAD//yYABAABAAAAAAD//ycABAABAAAAAAD//ygABAABAAAAAAD//ykABAABAAAAAAD//yoABAABAAAAAAD//ysABAABAAAAAAD//ywABAABAAAAAAD//y0ABAABAAAAAAD//y4ABAABAAAAAAD//y8ABAABAAAAAAD+/wAABAABAAAAAAD+/wEABAABAAAAAAD+/wIABAABAAAAAAD+/wMABAABAAAAAAD+/wQABAABAAAAAAD+/wUABAABAAAAAAD+/wYABAABAAAAAAD+/wcABAABAAAAAAD+/wgABAABAAAAAAD+/wkABAABAAAAAAD+/woABAABAAAAAAD+/wsABAABAAAAAAD+/wwABAABAAAAAAD+/w0ABAABAAAAAAD+/w4ABAABAAAAAAD+/w8ABAABAAAAAAD+/xAABAABAAAAAAD+/xEABAABAAAAAAD+/xIABAABAAAAAAD+/xMABAABAAAAAAD+/xQABAABAAAAAAD+/xUABAABAAAAAAD//wAABAABAAAAAAD//wEABAABAAAAAAD//wIABAABAAAAAAD//wMABAABAAAAAAD//wQABAABAAAAAAD//wUABAABAAAAAAD//wYABAABAAAAAAD//wcABAABAAAAAAD//wgABAABAAAAAAD//wkABAABAAAAAAD//woABAABAAAAAAD//wsABAABAAAAAAD//wwABAABAAAAAAD//w0ABAABAAAAAAD//w4ABAABAAAAAAD//w8ABAABAAAAAAD//xAABAABAAAAAAD//xEABAABAAAAAAD//xIABAABAAAAAAD//xMABAABAAAAAAD//xQABAABAAAAAAD//xUABAABAAAAAAD+/xYABAABAAAAAAD//xYABAABAAAAAAD+/+f/BAABAAAAAAD+/+j/BAABAAAAAAD+/+n/BAABAAAAAAD+/+r/BAABAAAAAAD+/+v/BAABAAAAAAD+/+z/BAABAAAAAAD+/+3/BAABAAAAAAD+/+7/BAABAAAAAAD+/+//BAABAAAAAAD+//D/BAABAAAAAAD+//H/BAABAAAAAAD+//L/BAABAAAAAAD+//P/BAABAAAAAAD+//T/BAABAAAAAAD+//X/BAABAAAAAAD+//b/BAABAAAAAAD+//f/BAABAAAAAAD+//j/BAABAAAAAAD+//n/BAABAAAAAAD+//r/BAABAAAAAAD+//v/BAABAAAAAAD+//z/BAABAAAAAAD+//3/BAABAAAAAAD//+f/BAABAAAAAAD//+j/BAABAAAAAAD//+n/BAABAAAAAAD//+r/BAABAAAAAAD//+v/BAABAAAAAAD//+z/BAABAAAAAAD//+3/BAABAAAAAAD//+7/BAABAAAAAAD//+//BAABAAAAAAD///D/BAABAAAAAAD///H/BAABAAAAAAD///L/BAABAAAAAAD///P/BAABAAAAAAD///T/BAABAAAAAAD///X/BAABAAAAAAD///b/BAABAAAAAAD///f/BAABAAAAAAD///j/BAABAAAAAAD///n/BAABAAAAAAD///r/BAABAAAAAAD///v/BAABAAAAAAD///z/BAABAAAAAAD///3/BAABAAAAAADU//7/BAABAAAAAADU////BAABAAAAAADU/wAABAABAAAAAADU/wEABAABAAAAAADU/wIABAABAAAAAADU/wMABAABAAAAAADU/wQABAABAAAAAADU/wUABAABAAAAAADU/wYABAABAAAAAADU/wcABAABAAAAAADU/wgABAABAAAAAADU/wkABAABAAAAAADU/woABAABAAAAAADU/wsABAABAAAAAADU/wwABAABAAAAAADU/w0ABAABAAAAAADU/w4ABAABAAAAAADU/w8ABAABAAAAAADU/xAABAABAAAAAADU/xEABAABAAAAAADU/xIABAABAAAAAADU/xMABAABAAAAAADV//7/BAABAAAAAADV////BAABAAAAAADV/wAABAABAAAAAADV/wEABAABAAAAAADV/wIABAABAAAAAADV/wMABAABAAAAAADV/wQABAABAAAAAADV/wUABAABAAAAAADV/wYABAABAAAAAADV/wcABAABAAAAAADV/wgABAABAAAAAADV/wkABAABAAAAAADV/woABAABAAAAAADV/wsABAABAAAAAADV/wwABAABAAAAAADV/w0ABAABAAAAAADV/w4ABAABAAAAAADV/w8ABAABAAAAAADV/xAABAABAAAAAADV/xEABAABAAAAAADV/xIABAABAAAAAADV/xMABAABAAAAAADU/xQABAABAAAAAADU/xUABAABAAAAAADU/xYABAABAAAAAADU/xcABAABAAAAAADU/xgABAABAAAAAADU/xkABAABAAAAAADU/xoABAABAAAAAADU/xsABAABAAAAAADU/xwABAABAAAAAADU/x0ABAABAAAAAADU/x4ABAABAAAAAADU/x8ABAABAAAAAADU/yAABAABAAAAAADV/xQABAABAAAAAADV/xUABAABAAAAAADV/xYABAABAAAAAADV/xcABAABAAAAAADV/xgABAABAAAAAADV/xkABAABAAAAAADV/xoABAABAAAAAADV/xsABAABAAAAAADV/xwABAABAAAAAADV/x0ABAABAAAAAADV/x4ABAABAAAAAADV/x8ABAABAAAAAADV/yAABAABAAAAAADW/xcABAABAAAAAADW/xgABAABAAAAAADX/xcABAABAAAAAADX/xgABAABAAAAAADY/xcABAABAAAAAADY/xgABAABAAAAAADZ/xcABAABAAAAAADZ/xgABAABAAAAAADa/xcABAABAAAAAADa/xgABAABAAAAAADb/xcABAABAAAAAADb/xgABAABAAAAAADc/xcABAABAAAAAADc/xgABAABAAAAAADd/xcABAABAAAAAADd/xgABAABAAAAAADe/xcABAABAAAAAADe/xgABAABAAAAAADf/xcABAABAAAAAADf/xgABAABAAAAAADg/xcABAABAAAAAADg/xgABAABAAAAAADh/xcABAABAAAAAADh/xgABAABAAAAAADi/xcABAABAAAAAADi/xgABAABAAAAAADj/xcABAABAAAAAADj/xgABAABAAAAAADk/xcABAABAAAAAADk/xgABAABAAAAAADl/xcABAABAAAAAADl/xgABAABAAAAAADm/xcABAABAAAAAADm/xgABAABAAAAAADn/xcABAABAAAAAADn/xgABAABAAAAAADo/xcABAABAAAAAADo/xgABAABAAAAAADp/xcABAABAAAAAADp/xgABAABAAAAAADq/xcABAABAAAAAADq/xgABAABAAAAAADr/xcABAABAAAAAADr/xgABAABAAAAAADs/xcABAABAAAAAADs/xgABAABAAAAAADt/xcABAABAAAAAADt/xgABAABAAAAAADu/xcABAABAAAAAADu/xgABAABAAAAAADv/xcABAABAAAAAADv/xgABAABAAAAAADw/xcABAABAAAAAADw/xgABAABAAAAAADx/xcABAABAAAAAADx/xgABAABAAAAAADy/xcABAABAAAAAADy/xgABAABAAAAAADz/xcABAABAAAAAADz/xgABAABAAAAAAD0/xcABAABAAAAAAD0/xgABAABAAAAAAD1/xcABAABAAAAAAD1/xgABAABAAAAAAD2/xcABAABAAAAAAD2/xgABAABAAAAAAD3/xcABAABAAAAAAD3/xgABAABAAAAAAD4/xcABAABAAAAAAD4/xgABAABAAAAAAD5/xcABAABAAAAAAD5/xgABAABAAAAAAD6/xcABAABAAAAAAD6/xgABAABAAAAAAD7/xcABAABAAAAAAD7/xgABAABAAAAAACC/xcABAABAAAAAACC/xgABAABAAAAAACD/xcABAABAAAAAACD/xgABAABAAAAAACE/xcABAABAAAAAACE/xgABAABAAAAAACF/xcABAABAAAAAACF/xgABAABAAAAAACG/xcABAABAAAAAACG/xgABAABAAAAAACH/xcABAABAAAAAACH/xgABAABAAAAAACI/xcABAABAAAAAACI/xgABAABAAAAAACJ/xcABAABAAAAAACJ/xgABAABAAAAAACK/xcABAABAAAAAACK/xgABAABAAAAAACL/xcABAABAAAAAACL/xgABAABAAAAAACM/xcABAABAAAAAACM/xgABAABAAAAAACN/xcABAABAAAAAACN/xgABAABAAAAAACO/xcABAABAAAAAACO/xgABAABAAAAAACP/xcABAABAAAAAACP/xgABAABAAAAAACQ/xcABAABAAAAAACQ/xgABAABAAAAAACR/xcABAABAAAAAACR/xgABAABAAAAAACS/xcABAABAAAAAACS/xgABAABAAAAAACT/xcABAABAAAAAACT/xgABAABAAAAAACU/xcABAABAAAAAACU/xgABAABAAAAAACV/xcABAABAAAAAACV/xgABAABAAAAAACW/xcABAABAAAAAACW/xgABAABAAAAAACX/xcABAABAAAAAACX/xgABAABAAAAAACY/xcABAABAAAAAACY/xgABAABAAAAAACZ/xcABAABAAAAAACZ/xgABAABAAAAAACa/xcABAABAAAAAACa/xgABAABAAAAAACb/xcABAABAAAAAACb/xgABAABAAAAAACc/xcABAABAAAAAACc/xgABAABAAAAAACd/xcABAABAAAAAACd/xgABAABAAAAAACe/xcABAABAAAAAACe/xgABAABAAAAAACf/xcABAABAAAAAACf/xgABAABAAAAAACg/xcABAABAAAAAACg/xgABAABAAAAAACh/xcABAABAAAAAACh/xgABAABAAAAAACi/xcABAABAAAAAACi/xgABAABAAAAAACj/xcABAABAAAAAACj/xgABAABAAAAAACk/xcABAABAAAAAACk/xgABAABAAAAAACl/xcABAABAAAAAACl/xgABAABAAAAAACm/xcABAABAAAAAACm/xgABAABAAAAAACn/xcABAABAAAAAACn/xgABAABAAAAAACo/xcABAABAAAAAACo/xgABAABAAAAAACp/xcABAABAAAAAACp/xgABAABAAAAAACq/xcABAABAAAAAACq/xgABAABAAAAAACr/xcABAABAAAAAACr/xgABAABAAAAAACs/xcABAABAAAAAACs/xgABAABAAAAAACq/wcABAABAAAAAACq/wgABAABAAAAAACq/wkABAABAAAAAACq/woABAABAAAAAACq/wsABAABAAAAAACq/wwABAABAAAAAACq/w0ABAABAAAAAACq/w4ABAABAAAAAACq/w8ABAABAAAAAACq/xAABAABAAAAAACq/xEABAABAAAAAACq/xIABAABAAAAAACq/xMABAABAAAAAACq/xQABAABAAAAAACq/xUABAABAAAAAACq/xYABAABAAAAAACr/wcABAABAAAAAACr/wgABAABAAAAAACr/wkABAABAAAAAACr/woABAABAAAAAACr/wsABAABAAAAAACr/wwABAABAAAAAACr/w0ABAABAAAAAACr/w4ABAABAAAAAACr/w8ABAABAAAAAACr/xAABAABAAAAAACr/xEABAABAAAAAACr/xIABAABAAAAAACr/xMABAABAAAAAACr/xQABAABAAAAAACr/xUABAABAAAAAACr/xYABAABAAAAAACq/wAABAABAAAAAACq/wEABAABAAAAAACq/wIABAABAAAAAACq/wMABAABAAAAAACq/wQABAABAAAAAACq/wUABAABAAAAAACq/wYABAABAAAAAACr/wAABAABAAAAAACr/wEABAABAAAAAACr/wIABAABAAAAAACr/wMABAABAAAAAACr/wQABAABAAAAAACr/wUABAABAAAAAACr/wYABAABAAAAAAB6//7/BAABAAAAAAB6////BAABAAAAAAB7//7/BAABAAAAAAB7////BAABAAAAAAB8//7/BAABAAAAAAB8////BAABAAAAAAB9//7/BAABAAAAAAB9////BAABAAAAAAB+//7/BAABAAAAAAB+////BAABAAAAAAB///7/BAABAAAAAAB/////BAABAAAAAACA//7/BAABAAAAAACA////BAABAAAAAACB//7/BAABAAAAAACB////BAABAAAAAACC//7/BAABAAAAAACC////BAABAAAAAACD//7/BAABAAAAAACD////BAABAAAAAACE//7/BAABAAAAAACE////BAABAAAAAACF//7/BAABAAAAAACF////BAABAAAAAACG//7/BAABAAAAAACG////BAABAAAAAACH//7/BAABAAAAAACH////BAABAAAAAACI//7/BAABAAAAAACI////BAABAAAAAACJ//7/BAABAAAAAACJ////BAABAAAAAACK//7/BAABAAAAAACK////BAABAAAAAACL//7/BAABAAAAAACL////BAABAAAAAACM//7/BAABAAAAAACM////BAABAAAAAACN//7/BAABAAAAAACN////BAABAAAAAACO//7/BAABAAAAAACO////BAABAAAAAACP//7/BAABAAAAAACP////BAABAAAAAACQ//7/BAABAAAAAACQ////BAABAAAAAACR//7/BAABAAAAAACR////BAABAAAAAACS//7/BAABAAAAAACS////BAABAAAAAACT//7/BAABAAAAAACT////BAABAAAAAACU//7/BAABAAAAAACU////BAABAAAAAACV//7/BAABAAAAAACV////BAABAAAAAACW//7/BAABAAAAAACW////BAABAAAAAACX//7/BAABAAAAAACX////BAABAAAAAACY//7/BAABAAAAAACY////BAABAAAAAACZ//7/BAABAAAAAACZ////BAABAAAAAACa//7/BAABAAAAAACa////BAABAAAAAACb//7/BAABAAAAAACb////BAABAAAAAACc//7/BAABAAAAAACc////BAABAAAAAACd//7/BAABAAAAAACd////BAABAAAAAACe//7/BAABAAAAAACe////BAABAAAAAACf//7/BAABAAAAAACf////BAABAAAAAACg//7/BAABAAAAAACg////BAABAAAAAACh//7/BAABAAAAAACh////BAABAAAAAACi//7/BAABAAAAAACi////BAABAAAAAACj//7/BAABAAAAAACj////BAABAAAAAACk//7/BAABAAAAAACk////BAABAAAAAACl//7/BAABAAAAAACl////BAABAAAAAACm//7/BAABAAAAAACm////BAABAAAAAACn//7/BAABAAAAAACn////BAABAAAAAACo//7/BAABAAAAAACo////BAABAAAAAACp//7/BAABAAAAAACp////BAABAAAAAACq//7/BAABAAAAAACq////BAABAAAAAACr//7/BAABAAAAAACr////BAABAAAAAACs//7/BAABAAAAAACs////BAABAAAAAACA/wAABAABAAAAAACA/wEABAABAAAAAACA/wIABAABAAAAAACA/wMABAABAAAAAACA/wQABAABAAAAAACA/wUABAABAAAAAACA/wYABAABAAAAAACA/wcABAABAAAAAACA/wgABAABAAAAAACA/wkABAABAAAAAACA/woABAABAAAAAACA/wsABAABAAAAAACA/wwABAABAAAAAACA/w0ABAABAAAAAACA/w4ABAABAAAAAACA/w8ABAABAAAAAACA/xAABAABAAAAAACA/xEABAABAAAAAACA/xIABAABAAAAAACA/xMABAABAAAAAACA/xQABAABAAAAAACA/xUABAABAAAAAACA/xYABAABAAAAAACA/xcABAABAAAAAACA/xgABAABAAAAAACB/wAABAABAAAAAACB/wEABAABAAAAAACB/wIABAABAAAAAACB/wMABAABAAAAAACB/wQABAABAAAAAACB/wUABAABAAAAAACB/wYABAABAAAAAACB/wcABAABAAAAAACB/wgABAABAAAAAACB/wkABAABAAAAAACB/woABAABAAAAAACB/wsABAABAAAAAACB/wwABAABAAAAAACB/w0ABAABAAAAAACB/w4ABAABAAAAAACB/w8ABAABAAAAAACB/xAABAABAAAAAACB/xEABAABAAAAAACB/xIABAABAAAAAACB/xMABAABAAAAAACB/xQABAABAAAAAACB/xUABAABAAAAAACB/xYABAABAAAAAACB/xcABAABAAAAAACB/xgABAABAAAAAABY/xcABAABAAAAAABY/xgABAABAAAAAABZ/xcABAABAAAAAABZ/xgABAABAAAAAABa/xcABAABAAAAAABa/xgABAABAAAAAABb/xcABAABAAAAAABb/xgABAABAAAAAABc/xcABAABAAAAAABc/xgABAABAAAAAABd/xcABAABAAAAAABd/xgABAABAAAAAABe/xcABAABAAAAAABe/xgABAABAAAAAABf/xcABAABAAAAAABf/xgABAABAAAAAABg/xcABAABAAAAAABg/xgABAABAAAAAABh/xcABAABAAAAAABh/xgABAABAAAAAABi/xcABAABAAAAAABi/xgABAABAAAAAABj/xcABAABAAAAAABj/xgABAABAAAAAABk/xcABAABAAAAAABk/xgABAABAAAAAABl/xcABAABAAAAAABl/xgABAABAAAAAABm/xcABAABAAAAAABm/xgABAABAAAAAABn/xcABAABAAAAAABn/xgABAABAAAAAABo/xcABAABAAAAAABo/xgABAABAAAAAABp/xcABAABAAAAAABp/xgABAABAAAAAABq/xcABAABAAAAAABq/xgABAABAAAAAABr/xcABAABAAAAAABr/xgABAABAAAAAABs/xcABAABAAAAAABs/xgABAABAAAAAABt/xcABAABAAAAAABt/xgABAABAAAAAABu/xcABAABAAAAAABu/xgABAABAAAAAABv/xcABAABAAAAAABv/xgABAABAAAAAABw/xcABAABAAAAAABw/xgABAABAAAAAABx/xcABAABAAAAAABx/xgABAABAAAAAABy/xcABAABAAAAAABy/xgABAABAAAAAABz/xcABAABAAAAAABz/xgABAABAAAAAAB0/xcABAABAAAAAAB0/xgABAABAAAAAAB1/xcABAABAAAAAAB1/xgABAABAAAAAAB2/xcABAABAAAAAAB2/xgABAABAAAAAAB3/xcABAABAAAAAAB3/xgABAABAAAAAAB4/xcABAABAAAAAAB4/xgABAABAAAAAAB5/xcABAABAAAAAAB5/xgABAABAAAAAAB6/xcABAABAAAAAAB6/xgABAABAAAAAAB7/xcABAABAAAAAAB7/xgABAABAAAAAAB8/xcABAABAAAAAAB8/xgABAABAAAAAAB9/xcABAABAAAAAAB9/xgABAABAAAAAAB+/xcABAABAAAAAAB+/xgABAABAAAAAAB//xcABAABAAAAAAB//xgABAABAAAAAACA/+f/BAABAAAAAACA/+j/BAABAAAAAACA/+n/BAABAAAAAACA/+r/BAABAAAAAACA/+v/BAABAAAAAACA/+z/BAABAAAAAACA/+3/BAABAAAAAACA/+7/BAABAAAAAACA/+//BAABAAAAAACA//D/BAABAAAAAACA//H/BAABAAAAAACA//L/BAABAAAAAACA//P/BAABAAAAAACA//T/BAABAAAAAACA//X/BAABAAAAAACA//b/BAABAAAAAACA//f/BAABAAAAAACA//j/BAABAAAAAACA//n/BAABAAAAAACA//r/BAABAAAAAACA//v/BAABAAAAAACA//z/BAABAAAAAACB/+f/BAABAAAAAACB/+j/BAABAAAAAACB/+n/BAABAAAAAACB/+r/BAABAAAAAACB/+v/BAABAAAAAACB/+z/BAABAAAAAACB/+3/BAABAAAAAACB/+7/BAABAAAAAACB/+//BAABAAAAAACB//D/BAABAAAAAACB//H/BAABAAAAAACB//L/BAABAAAAAACB//P/BAABAAAAAACB//T/BAABAAAAAACB//X/BAABAAAAAACB//b/BAABAAAAAACB//f/BAABAAAAAACB//j/BAABAAAAAACB//n/BAABAAAAAACB//r/BAABAAAAAACB//v/BAABAAAAAACB//z/BAABAAAAAACA//3/BAABAAAAAACB//3/BAABAAAAAACt/xcABAABAAAAAACt/xgABAABAAAAAACu/xcABAABAAAAAACu/xgABAABAAAAAACv/xcABAABAAAAAACv/xgABAABAAAAAACw/xcABAABAAAAAACw/xgABAABAAAAAACx/xcABAABAAAAAACx/xgABAABAAAAAACy/xcABAABAAAAAACy/xgABAABAAAAAACz/xcABAABAAAAAACz/xgABAABAAAAAAC0/xcABAABAAAAAAC0/xgABAABAAAAAAC1/xcABAABAAAAAAC1/xgABAABAAAAAAC2/xcABAABAAAAAAC2/xgABAABAAAAAAC3/xcABAABAAAAAAC3/xgABAABAAAAAAC4/xcABAABAAAAAAC4/xgABAABAAAAAAC5/xcABAABAAAAAAC5/xgABAABAAAAAAC6/xcABAABAAAAAAC6/xgABAABAAAAAAC7/xcABAABAAAAAAC7/xgABAABAAAAAAC8/xcABAABAAAAAAC8/xgABAABAAAAAAC9/xcABAABAAAAAAC9/xgABAABAAAAAAC+/xcABAABAAAAAAC+/xgABAABAAAAAAC//xcABAABAAAAAAC//xgABAABAAAAAADA/xcABAABAAAAAADA/xgABAABAAAAAADB/xcABAABAAAAAADB/xgABAABAAAAAADC/xcABAABAAAAAADC/xgABAABAAAAAADD/xcABAABAAAAAADD/xgABAABAAAAAADE/xcABAABAAAAAADE/xgABAABAAAAAADF/xcABAABAAAAAADF/xgABAABAAAAAADG/xcABAABAAAAAADG/xgABAABAAAAAADH/xcABAABAAAAAADH/xgABAABAAAAAADI/xcABAABAAAAAADI/xgABAABAAAAAADJ/xcABAABAAAAAADJ/xgABAABAAAAAADK/xcABAABAAAAAADK/xgABAABAAAAAADL/xcABAABAAAAAADL/xgABAABAAAAAADM/xcABAABAAAAAADM/xgABAABAAAAAADN/xcABAABAAAAAADN/xgABAABAAAAAADO/xcABAABAAAAAADO/xgABAABAAAAAADP/xcABAABAAAAAADP/xgABAABAAAAAADQ/xcABAABAAAAAADQ/xgABAABAAAAAADR/xcABAABAAAAAADR/xgABAABAAAAAADS/xcABAABAAAAAADS/xgABAABAAAAAADT/xcABAABAAAAAADT/xgABAABAAAAAACt//7/BAABAAAAAACt////BAABAAAAAACu//7/BAABAAAAAACu////BAABAAAAAACv//7/BAABAAAAAACv////BAABAAAAAACw//7/BAABAAAAAACw////BAABAAAAAACx//7/BAABAAAAAACx////BAABAAAAAACy//7/BAABAAAAAACy////BAABAAAAAACz//7/BAABAAAAAACz////BAABAAAAAAC0//7/BAABAAAAAAC0////BAABAAAAAAC1//7/BAABAAAAAAC1////BAABAAAAAAC2//7/BAABAAAAAAC2////BAABAAAAAAC3//7/BAABAAAAAAC3////BAABAAAAAAC4//7/BAABAAAAAAC4////BAABAAAAAAC5//7/BAABAAAAAAC5////BAABAAAAAAC6//7/BAABAAAAAAC6////BAABAAAAAAC7//7/BAABAAAAAAC7////BAABAAAAAAC8//7/BAABAAAAAAC8////BAABAAAAAAC9//7/BAABAAAAAAC9////BAABAAAAAAC+//7/BAABAAAAAAC+////BAABAAAAAAC///7/BAABAAAAAAC/////BAABAAAAAADA//7/BAABAAAAAADA////BAABAAAAAADB//7/BAABAAAAAADB////BAABAAAAAADC//7/BAABAAAAAADC////BAABAAAAAADD//7/BAABAAAAAADD////BAABAAAAAADE//7/BAABAAAAAADE////BAABAAAAAADF//7/BAABAAAAAADF////BAABAAAAAADG//7/BAABAAAAAADG////BAABAAAAAADH//7/BAABAAAAAADH////BAABAAAAAADI//7/BAABAAAAAADI////BAABAAAAAADJ//7/BAABAAAAAADJ////BAABAAAAAADK//7/BAABAAAAAADK////BAABAAAAAADL//7/BAABAAAAAADL////BAABAAAAAADM//7/BAABAAAAAADM////BAABAAAAAADN//7/BAABAAAAAADN////BAABAAAAAADO//7/BAABAAAAAADO////BAABAAAAAADP//7/BAABAAAAAADP////BAABAAAAAADQ//7/BAABAAAAAADQ////BAABAAAAAADR//7/BAABAAAAAADR////BAABAAAAAADS//7/BAABAAAAAADS////BAABAAAAAADT//7/BAABAAAAAADT////BAABAAAAAADU/+f/BAABAAAAAADU/+j/BAABAAAAAADU/+n/BAABAAAAAADU/+r/BAABAAAAAADU/+v/BAABAAAAAADU/+z/BAABAAAAAADU/+3/BAABAAAAAADU/+7/BAABAAAAAADU/+//BAABAAAAAADU//D/BAABAAAAAADU//H/BAABAAAAAADU//L/BAABAAAAAADU//P/BAABAAAAAADU//T/BAABAAAAAADU//X/BAABAAAAAADU//b/BAABAAAAAADU//f/BAABAAAAAADU//j/BAABAAAAAADU//n/BAABAAAAAADU//r/BAABAAAAAADU//v/BAABAAAAAADU//z/BAABAAAAAADU//3/BAABAAAAAADV/+f/BAABAAAAAADV/+j/BAABAAAAAADV/+n/BAABAAAAAADV/+r/BAABAAAAAADV/+v/BAABAAAAAADV/+z/BAABAAAAAADV/+3/BAABAAAAAADV/+7/BAABAAAAAADV/+//BAABAAAAAADV//D/BAABAAAAAADV//H/BAABAAAAAADV//L/BAABAAAAAADV//P/BAABAAAAAADV//T/BAABAAAAAADV//X/BAABAAAAAADV//b/BAABAAAAAADV//f/BAABAAAAAADV//j/BAABAAAAAADV//n/BAABAAAAAADV//r/BAABAAAAAADV//v/BAABAAAAAADV//z/BAABAAAAAADV//3/BAABAAAAAADU/+X/BAABAAAAAADU/+b/BAABAAAAAADV/+X/BAABAAAAAADV/+b/BAABAAAAAADW/+X/BAABAAAAAADW/+b/BAABAAAAAADX/+X/BAABAAAAAADX/+b/BAABAAAAAADY/+X/BAABAAAAAADY/+b/BAABAAAAAADZ/+X/BAABAAAAAADZ/+b/BAABAAAAAADa/+X/BAABAAAAAADa/+b/BAABAAAAAADb/+X/BAABAAAAAADb/+b/BAABAAAAAADc/+X/BAABAAAAAADc/+b/BAABAAAAAADd/+X/BAABAAAAAADd/+b/BAABAAAAAADe/+X/BAABAAAAAADe/+b/BAABAAAAAADf/+X/BAABAAAAAADf/+b/BAABAAAAAADg/+X/BAABAAAAAADg/+b/BAABAAAAAADh/+X/BAABAAAAAADh/+b/BAABAAAAAADi/+X/BAABAAAAAADi/+b/BAABAAAAAADj/+X/BAABAAAAAADj/+b/BAABAAAAAADk/+X/BAABAAAAAADk/+b/BAABAAAAAADl/+X/BAABAAAAAADl/+b/BAABAAAAAADm/+X/BAABAAAAAADm/+b/BAABAAAAAADn/+X/BAABAAAAAADn/+b/BAABAAAAAADo/+X/BAABAAAAAADo/+b/BAABAAAAAADp/+X/BAABAAAAAADp/+b/BAABAAAAAADq/+X/BAABAAAAAADq/+b/BAABAAAAAADr/+X/BAABAAAAAADr/+b/BAABAAAAAADs/+X/BAABAAAAAADs/+b/BAABAAAAAADt/+X/BAABAAAAAADt/+b/BAABAAAAAADu/+X/BAABAAAAAADu/+b/BAABAAAAAADv/+X/BAABAAAAAADv/+b/BAABAAAAAADw/+X/BAABAAAAAADw/+b/BAABAAAAAADx/+X/BAABAAAAAADx/+b/BAABAAAAAADy/+X/BAABAAAAAADy/+b/BAABAAAAAADz/+X/BAABAAAAAADz/+b/BAABAAAAAAD0/+X/BAABAAAAAAD0/+b/BAABAAAAAAD1/+X/BAABAAAAAAD1/+b/BAABAAAAAAD2/+X/BAABAAAAAAD2/+b/BAABAAAAAAD3/+X/BAABAAAAAAD3/+b/BAABAAAAAAD4/+X/BAABAAAAAAD4/+b/BAABAAAAAAD5/+X/BAABAAAAAAD5/+b/BAABAAAAAAD6/+X/BAABAAAAAAD6/+b/BAABAAAAAAD7/+X/BAABAAAAAAD7/+b/BAABAAAAAAD8/+X/BAABAAAAAAD8/+b/BAABAAAAAAD9/+X/BAABAAAAAAD9/+b/BAABAAAAAAD+/+X/BAABAAAAAAD+/+b/BAABAAAAAAD//+X/BAABAAAAAAD//+b/BAABAAAAAAAAAOX/BAABAAAAAAAAAOb/BAABAAAAAAABAOX/BAABAAAAAAABAOb/BAABAAAAAAACAOX/BAABAAAAAAACAOb/BAABAAAAAAADAOX/BAABAAAAAAADAOb/BAABAAAAAAAEAOX/BAABAAAAAAAEAOb/BAABAAAAAAAFAOX/BAABAAAAAAAFAOb/BAABAAAAAAAGAOX/BAABAAAAAAAGAOb/BAABAAAAAAAHAOX/BAABAAAAAAAHAOb/BAABAAAAAAAIAOX/BAABAAAAAAAIAOb/BAABAAAAAAAJAOX/BAABAAAAAAAJAOb/BAABAAAAAAAKAOX/BAABAAAAAAAKAOb/BAABAAAAAAALAOX/BAABAAAAAAALAOb/BAABAAAAAAAMAOX/BAABAAAAAAAMAOb/BAABAAAAAAANAOX/BAABAAAAAAANAOb/BAABAAAAAAAOAOX/BAABAAAAAAAOAOb/BAABAAAAAAAPAOX/BAABAAAAAAAPAOb/BAABAAAAAAAQAOX/BAABAAAAAAAQAOb/BAABAAAAAAARAOX/BAABAAAAAAARAOb/BAABAAAAAAASAOX/BAABAAAAAAASAOb/BAABAAAAAAATAOX/BAABAAAAAAATAOb/BAABAAAAAAAUAOX/BAABAAAAAAAUAOb/BAABAAAAAAAVAOX/BAABAAAAAAAVAOb/BAABAAAAAAAWAOX/BAABAAAAAAAWAOb/BAABAAAAAAAXAOX/BAABAAAAAAAXAOb/BAABAAAAAAAYAOX/BAABAAAAAAAYAOb/BAABAAAAAAAZAOX/BAABAAAAAAAZAOb/BAABAAAAAAAaAOX/BAABAAAAAAAaAOb/BAABAAAAAAAbAOX/BAABAAAAAAAbAOb/BAABAAAAAAAcAOX/BAABAAAAAAAcAOb/BAABAAAAAAAdAOX/BAABAAAAAAAdAOb/BAABAAAAAAAeAOX/BAABAAAAAAAeAOb/BAABAAAAAAAfAOX/BAABAAAAAAAfAOb/BAABAAAAAAAgAOX/BAABAAAAAAAgAOb/BAABAAAAAAAhAOX/BAABAAAAAAAhAOb/BAABAAAAAAAiAOX/BAABAAAAAAAiAOb/BAABAAAAAAAjAOX/BAABAAAAAAAjAOb/BAABAAAAAAAkAOX/BAABAAAAAAAkAOb/BAABAAAAAAAlAOX/BAABAAAAAAAlAOb/BAABAAAAAAAmAOX/BAABAAAAAAAmAOb/BAABAAAAAAAnAOX/BAABAAAAAAAnAOb/BAABAAAAAAAoAOX/BAABAAAAAAAoAOb/BAABAAAAAAApAOX/BAABAAAAAAApAOb/BAABAAAAAAAqAOX/BAABAAAAAAAqAOb/BAABAAAAAAArAOX/BAABAAAAAAArAOb/BAABAAAAAAAsAOX/BAABAAAAAAAsAOb/BAABAAAAAAAtAOX/BAABAAAAAAAtAOb/BAABAAAAAAAuAOX/BAABAAAAAAAuAOb/BAABAAAAAAAvAOX/BAABAAAAAAAvAOb/BAABAAAAAAAwAOX/BAABAAAAAAAwAOb/BAABAAAAAAAxAOX/BAABAAAAAAAxAOb/BAABAAAAAAAyAOX/BAABAAAAAAAyAOb/BAABAAAAAAAzAOX/BAABAAAAAAAzAOb/BAABAAAAAAA0AOX/BAABAAAAAAA0AOb/BAABAAAAAAA1AOX/BAABAAAAAAA1AOb/BAABAAAAAAA2AOX/BAABAAAAAAA2AOb/BAABAAAAAAA3AOX/BAABAAAAAAA3AOb/BAABAAAAAAA4AOX/BAABAAAAAAA4AOb/BAABAAAAAAA5AOX/BAABAAAAAAA5AOb/BAABAAAAAAA6AOX/BAABAAAAAAA6AOb/BAABAAAAAAA7AOX/BAABAAAAAAA7AOb/BAABAAAAAAA8AOX/BAABAAAAAAA8AOb/BAABAAAAAAA9AOX/BAABAAAAAAA9AOb/BAABAAAAAAA+AOX/BAABAAAAAAA+AOb/BAABAAAAAAA/AOX/BAABAAAAAAA/AOb/BAABAAAAAABAAOX/BAABAAAAAABAAOb/BAABAAAAAABBAOX/BAABAAAAAABBAOb/BAABAAAAAABCAOX/BAABAAAAAABCAOb/BAABAAAAAABDAOX/BAABAAAAAABDAOb/BAABAAAAAABEAOX/BAABAAAAAABEAOb/BAABAAAAAABFAOX/BAABAAAAAABFAOb/BAABAAAAAABGAOX/BAABAAAAAABGAOb/BAABAAAAAABHAOX/BAABAAAAAABHAOb/BAABAAAAAABIAOX/BAABAAAAAABIAOb/BAABAAAAAABJAOX/BAABAAAAAABJAOb/BAABAAAAAABKAOX/BAABAAAAAABKAOb/BAABAAAAAABLAOX/BAABAAAAAABLAOb/BAABAAAAAABMAOX/BAABAAAAAABMAOb/BAABAAAAAABNAOX/BAABAAAAAABNAOb/BAABAAAAAABOAOX/BAABAAAAAABOAOb/BAABAAAAAABPAOX/BAABAAAAAABPAOb/BAABAAAAAABQAOX/BAABAAAAAABQAOb/BAABAAAAAABRAOX/BAABAAAAAABRAOb/BAABAAAAAAAoAOf/BAABAAAAAAAoAOj/BAABAAAAAAAoAOn/BAABAAAAAAAoAOr/BAABAAAAAAAoAOv/BAABAAAAAAAoAOz/BAABAAAAAAAoAO3/BAABAAAAAAAoAO7/BAABAAAAAAAoAO//BAABAAAAAAAoAPD/BAABAAAAAAAoAPH/BAABAAAAAAAoAPL/BAABAAAAAAAoAPP/BAABAAAAAAAoAPT/BAABAAAAAAAoAPX/BAABAAAAAAAoAPb/BAABAAAAAAAoAPf/BAABAAAAAAAoAPj/BAABAAAAAAAoAPn/BAABAAAAAAAoAPr/BAABAAAAAAAoAPv/BAABAAAAAAAoAPz/BAABAAAAAAAoAP3/BAABAAAAAAApAOf/BAABAAAAAAApAOj/BAABAAAAAAApAOn/BAABAAAAAAApAOr/BAABAAAAAAApAOv/BAABAAAAAAApAOz/BAABAAAAAAApAO3/BAABAAAAAAApAO7/BAABAAAAAAApAO//BAABAAAAAAApAPD/BAABAAAAAAApAPH/BAABAAAAAAApAPL/BAABAAAAAAApAPP/BAABAAAAAAApAPT/BAABAAAAAAApAPX/BAABAAAAAAApAPb/BAABAAAAAAApAPf/BAABAAAAAAApAPj/BAABAAAAAAApAPn/BAABAAAAAAApAPr/BAABAAAAAAApAPv/BAABAAAAAAApAPz/BAABAAAAAAApAP3/BAABAAAAAAAmACQABQABAAAAAAAmACUABQABAAAAAAAnACQABQABAAAAAAAnACUABQABAAAAAAA=")
+tile_set = ExtResource("23_idi36")
+metadata/_edit_lock_ = true
+
+[node name="LobotomyPickup" parent="." instance=ExtResource("24_8ubki")]
+position = Vector2(322, 188)
+
+[node name="LobotomyPickup2" parent="." instance=ExtResource("24_8ubki")]
+position = Vector2(2564, -607)

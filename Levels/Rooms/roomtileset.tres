@@ -1,0 +1,32 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dr8dyvj41rr0e"]
+
+[ext_resource type="Texture2D" uid="uid://bjajw4kmvfa7e" path="res://Art/maptileset.png" id="1_4xmsd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4xmsd"]
+resource_name = "NonColi"
+texture = ExtResource("1_4xmsd")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2626f"]
+resource_name = "Coli"
+texture = ExtResource("1_4xmsd")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+sources/4 = SubResource("TileSetAtlasSource_4xmsd")
+sources/5 = SubResource("TileSetAtlasSource_2626f")

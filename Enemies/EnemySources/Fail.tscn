@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://tjm38xj03j4g"]
+
+[ext_resource type="Script" uid="uid://c12l8y8g5ejd1" path="res://Enemies/EnemySources/WinUi.cs" id="1_p0w3p"]
+[ext_resource type="Texture2D" uid="uid://c7rhxtb6oce88" path="res://Art/head2.png" id="2_6mpmn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p0w3p")
+
+[node name="ColorRect" type="ColorRect" parent="WinUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0595917, 0.127471, 1)
+
+[node name="TextureRect" type="TextureRect" parent="WinUI"]
+offset_left = 416.0
+offset_top = 176.0
+offset_right = 672.0
+offset_bottom = 432.0
+texture = ExtResource("2_6mpmn")
+
+[node name="TextureRect2" type="TextureRect" parent="WinUI"]
+offset_left = -24.0
+offset_top = 184.0
+offset_right = 232.0
+offset_bottom = 440.0
+texture = ExtResource("2_6mpmn")
+flip_h = true
+
+[node name="Label" type="Label" parent="WinUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -116.0
+offset_right = 257.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 51
+text = "You Fail!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="WinUI"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 248.0
+offset_right = 360.0
+offset_bottom = 279.0
+text = "Try Again"
+
+[node name="Button" type="Button" parent="WinUI"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 288.0
+offset_right = 360.0
+offset_bottom = 319.0
+text = "Quit"
+
+[connection signal="button_down" from="WinUI/Button2" to="WinUI" method="OnButton2ButtonDown"]
+[connection signal="button_down" from="WinUI/Button" to="WinUI" method="OnButtonButtonDown"]

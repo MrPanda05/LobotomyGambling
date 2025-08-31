@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://g1tdo44o4lb"]
+
+[ext_resource type="Texture2D" uid="uid://xqrr12ajjbtv" path="res://Art/heartfull.png" id="1_105bg"]
+[ext_resource type="Script" uid="uid://xjnlami0qyjp" path="res://Char/HeartUI.cs" id="2_njm30"]
+[ext_resource type="Texture2D" uid="uid://bypligduqqegu" path="res://Art/heartemptyl.png" id="3_ftv2x"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_105bg")
+expand_mode = 3
+script = ExtResource("2_njm30")
+FullHeart = ExtResource("1_105bg")
+EmptyHeart = ExtResource("3_ftv2x")

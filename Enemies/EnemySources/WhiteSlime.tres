@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemySource" load_steps=3 format=3 uid="uid://5c3wu6oys0tj"]
+
+[ext_resource type="Texture2D" uid="uid://c20y80g7th4cr" path="res://Art/slime3.png" id="1_iewnr"]
+[ext_resource type="Script" uid="uid://b4d70jffexbxi" path="res://Enemies/EnemySource.cs" id="1_iquac"]
+
+[resource]
+script = ExtResource("1_iquac")
+EnemyName = "White slime"
+MaxHealth = 5.0
+Speed = 250.0
+Damage = 1
+AttackRange = 20.0
+AttackCooldown = 1.0
+EnemyTexture = ExtResource("1_iewnr")
+metadata/_custom_type_script = "uid://b4d70jffexbxi"

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://e2cm2tdmpju"]
+
+[ext_resource type="Texture2D" uid="uid://47pcu2oki0ja" path="res://Art/bone.png" id="1_j563d"]
+[ext_resource type="Script" uid="uid://co1fg24vlvxqm" path="res://Enemies/BoneBullet.cs" id="1_xo5jw"]
+[ext_resource type="PackedScene" uid="uid://b4gnff5vltluy" path="res://Commons/Components/HitboxComponenent.tscn" id="3_xo5jw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j563d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnsih"]
+size = Vector2(32, 10)
+
+[node name="BoneBullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xo5jw")
+Speed = 375.0
+Damage = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(2.005, 2.005)
+texture = ExtResource("1_j563d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j563d")
+
+[node name="HitboxComponenent" parent="." instance=ExtResource("3_xo5jw")]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponenent"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pnsih")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true

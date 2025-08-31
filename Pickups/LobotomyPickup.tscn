@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4dm6yr7w1277"]
+
+[ext_resource type="Script" uid="uid://c1n42nq7j2w58" path="res://Pickups/LobotomyPickup.cs" id="1_qmmo1"]
+[ext_resource type="Texture2D" uid="uid://yfyljlpf3ttv" path="res://Art/lobotomyNeedle.png" id="1_wy1ic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8gf1"]
+radius = 13.0384
+
+[node name="LobotomyPickup" type="Node2D"]
+script = ExtResource("1_qmmo1")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_t8gf1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.55, 1.55)
+texture = ExtResource("1_wy1ic")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnArea2dBodyEntered"]

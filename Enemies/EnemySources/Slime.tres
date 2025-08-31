@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemySource" load_steps=2 format=3 uid="uid://b28rcv5d8vbmw"]
+[gd_resource type="Resource" script_class="EnemySource" load_steps=3 format=3 uid="uid://b28rcv5d8vbmw"]
 
+[ext_resource type="Texture2D" uid="uid://b0g66l2u7g2mv" path="res://Art/slime1.png" id="1_0o3wj"]
 [ext_resource type="Script" uid="uid://b4d70jffexbxi" path="res://Enemies/EnemySource.cs" id="1_1c0ck"]
 
 [resource]
@@ -10,4 +11,5 @@ Speed = 100.0
 Damage = 1
 AttackRange = 20.0
 AttackCooldown = 1.0
+EnemyTexture = ExtResource("1_0o3wj")
 metadata/_custom_type_script = "uid://b4d70jffexbxi"

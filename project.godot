@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LobotomyGambling"
-run/main_scene="uid://c4lughypktg2v"
+run/main_scene="uid://01h1k8oo1xl1"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,9 +24,9 @@ MinigameManager="*res://Commons/Autoloads/MinigameManager.tscn"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=960
-window/size/window_height_override=540
-window/stretch/mode="viewport"
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -108,6 +108,7 @@ DebugUiToggle={
 2d_physics/layer_8="EnemiesCenterColi"
 2d_physics/layer_9="Bullet"
 2d_physics/layer_10="DungeonDoor"
+2d_physics/layer_11="Holes"
 
 [rendering]
 

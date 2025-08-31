@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c4lughypktg2v"]
+[gd_scene load_steps=14 format=4 uid="uid://c4lughypktg2v"]
 
 [ext_resource type="PackedScene" uid="uid://cx6vr0snuqt63" path="res://Cameras/DugeonCamera.tscn" id="1_4cpys"]
 [ext_resource type="Script" uid="uid://duflqvuopd0yt" path="res://Test/TestLevel.cs" id="1_mbotg"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cbx0ik6tisf3c" path="res://Levels/TestRoom.tscn" id="3_xetxb"]
 [ext_resource type="TileSet" uid="uid://c0jt8lx53nmhi" path="res://Test/TileSetTest.tres" id="5_jrogq"]
 [ext_resource type="PackedScene" uid="uid://6dgdg4nvmeej" path="res://Levels/Rooms/Door.tscn" id="6_g8jlu"]
+[ext_resource type="PackedScene" uid="uid://d06je4bybunup" path="res://Enemies/EnemiesList/Skeleton.tscn" id="9_l77ox"]
+[ext_resource type="Script" uid="uid://ivhant6bhcsi" path="res://Levels/BossRoom.cs" id="10_d3whr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8jlu"]
 size = Vector2(638, 367)
@@ -80,26 +82,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAgABAAAAAAAAAAEAAgABAAAAAAAAAAIAAgABAAA
 tile_set = ExtResource("5_jrogq")
 metadata/_edit_lock_ = true
 
-[node name="EnemyTest" parent="LevelManager/TestRoomCenter" instance=ExtResource("2_vid4w")]
-position = Vector2(445, 244)
-scale = Vector2(0.4, 0.4)
-
-[node name="EnemyTest2" parent="LevelManager/TestRoomCenter" instance=ExtResource("2_vid4w")]
-position = Vector2(488, 99)
-scale = Vector2(0.4, 0.4)
-
-[node name="EnemyTest3" parent="LevelManager/TestRoomCenter" instance=ExtResource("2_vid4w")]
-position = Vector2(539, 251)
-scale = Vector2(0.4, 0.4)
-
-[node name="EnemyTest4" parent="LevelManager/TestRoomCenter" instance=ExtResource("2_vid4w")]
-position = Vector2(346, 123)
-scale = Vector2(0.4, 0.4)
-
-[node name="EnemyTest5" parent="LevelManager/TestRoomCenter" instance=ExtResource("2_vid4w")]
-position = Vector2(346, 123)
-scale = Vector2(0.4, 0.4)
-
 [node name="RoomArea" type="Area2D" parent="LevelManager/TestRoomCenter"]
 collision_layer = 0
 collision_mask = 32
@@ -131,6 +113,7 @@ ChangeDirection = Vector2(-1, 0)
 position = Vector2(37, 0)
 
 [node name="RoomArea" type="Area2D" parent="LevelManager/TestRoomRight"]
+process_mode = 3
 collision_layer = 0
 collision_mask = 32
 
@@ -150,6 +133,10 @@ scale = Vector2(0.4, 0.4)
 [node name="EnemyTest8" parent="LevelManager/TestRoomRight" instance=ExtResource("2_vid4w")]
 position = Vector2(439, 99)
 scale = Vector2(0.4, 0.4)
+
+[node name="Skeleton" parent="LevelManager/TestRoomRight" instance=ExtResource("9_l77ox")]
+position = Vector2(434, 206)
+scale = Vector2(0.28, 0.28)
 
 [node name="TestRoomUp" parent="LevelManager" node_paths=PackedStringArray("_tileMapLayer", "_doors", "_roomArea") instance=ExtResource("3_xetxb")]
 z_index = -1
@@ -189,11 +176,10 @@ scale = Vector2(0.4, 0.4)
 position = Vector2(457, 202)
 scale = Vector2(0.4, 0.4)
 
-[node name="TestRoomDown" parent="LevelManager" node_paths=PackedStringArray("_tileMapLayer", "_doors", "_roomArea") instance=ExtResource("3_xetxb")]
+[node name="TestRoomDown" parent="LevelManager" node_paths=PackedStringArray("_roomArea") instance=ExtResource("3_xetxb")]
 z_index = -1
 position = Vector2(0, 400)
-_tileMapLayer = NodePath("TileMapLayer")
-_doors = [NodePath("../TestRoomRight/Door")]
+script = ExtResource("10_d3whr")
 _roomArea = NodePath("RoomArea")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="LevelManager/TestRoomDown"]

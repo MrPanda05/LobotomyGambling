@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemySource" load_steps=3 format=3 uid="uid://j51xebwg0c4b"]
+
+[ext_resource type="Script" uid="uid://b4d70jffexbxi" path="res://Enemies/EnemySource.cs" id="1_4ccol"]
+[ext_resource type="Texture2D" uid="uid://1csy0gmto238" path="res://Art/slime2.png" id="1_id04n"]
+
+[resource]
+script = ExtResource("1_4ccol")
+EnemyName = "GreenSlime"
+MaxHealth = 15.0
+Speed = 125.0
+Damage = 1
+AttackRange = 20.0
+AttackCooldown = 1.0
+EnemyTexture = ExtResource("1_id04n")
+metadata/_custom_type_script = "uid://b4d70jffexbxi"

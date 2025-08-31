@@ -15,12 +15,19 @@ namespace Enemies
         public HealthComponent HealthComponenet { get; protected set; }
         public Action<IEnemy> OnDeath { get; set; }
 
+        private Sprite2D _sprite;
+
+        [Export]
+        private AudioStreamPlayer _audioStreamPlayer;
+
         public override void _Ready()
         {
             FiniteStateMachine = GetNode<FSM>("FSM");
             Hitbox = GetNode<HitboxComponenent>("HitboxComponenent");
             Hurtbox = GetNode<HurtboxComponent>("HurtboxComponent");
             HealthComponenet = GetNode<HealthComponent>("HealthComponent");
+            _sprite = GetNode<Sprite2D>("Sprite2D");
+            _sprite.Texture = EnemyResource.EnemyTexture;
             Hitbox.OnAreaHit += TestHitBox;
             Hitbox.SetDamage(EnemyResource.Damage);
             Hurtbox.OnHit += TestHurtBox;
@@ -38,6 +45,7 @@ namespace Enemies
         {
             //add other logic here like flashing red or knockback
             GD.Print("I got hit: " + damage);
+            _audioStreamPlayer.Play();
             HealthComponenet.TakeDamage(damage);
         }
         public virtual void Attack()

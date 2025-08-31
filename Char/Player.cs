@@ -6,7 +6,6 @@ using Godot;
 using Gun;
 using Minigames;
 using System;
-using System.Threading;
 
 namespace Char
 {
@@ -22,11 +21,16 @@ namespace Char
         public Action OnPlayerStatsUpdate;
 
 
-        private HealthComponent _healthComponent;
-        private HurtboxComponent _hurtbox;
+        public HealthComponent _healthComponent;
+        public HurtboxComponent _hurtbox;
         private FSM _fsm;
         private Vector2 _vel;
         public GunManager GunManager { get; private set; }
+
+        [Export]
+        private AudioStreamPlayer _hurtSound;
+        [Export]
+        private Timer _imunityTimer;
 
         public override void _Ready()
         {
@@ -43,10 +47,22 @@ namespace Char
             //add other logic here like flashing red or knockback, imunity frames
             GD.Print("Player got hit: " + damage);
             _healthComponent.TakeDamage(damage);
+            _hurtSound.Play();
+            _imunityTimer.Start();
+            _hurtbox.ProcessMode = ProcessModeEnum.Disabled;
+        }
+        public void OnTimerTimeout()
+        {
+            _hurtbox.ProcessMode = ProcessModeEnum.Inherit;
         }
         private void Die()
         {
+            CallDeferred("RestartScene");
             GD.Print("Player Died");
+        }
+        public void RestartScene()
+        {
+            GetTree().ChangeSceneToFile("res://Enemies/EnemySources/Fail.tscn");
         }
         public void Movement()
         {

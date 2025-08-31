@@ -2,6 +2,7 @@ using Char;
 using Godot;
 using Gun;
 using System;
+using Upgrades;
 
 namespace Minigames
 {
@@ -21,6 +22,10 @@ namespace Minigames
 
         [Export]
         private Label _desctEffectLabel;
+
+        [Export]
+        public UpgradeSource[] _upgrades;
+
 
         public override void _Ready()
         {
@@ -63,37 +68,44 @@ namespace Minigames
             Player player = GetTree().GetFirstNodeInGroup("Player") as Player;
             if (_stickAngle.RotationDegrees >= 30 && _stickAngle.RotationDegrees < 50)
             {
-                player.ChangeSpeed(player.Speed * 1.1f);
-                player.GunManager.CurrentGun.GunResource.Damage *= 0.75f;
+                //player.ChangeSpeed(player.Speed * 1.1f);
+                //player.GunManager.CurrentGun.GunResource.Damage *= 0.75f;
+                _upgrades[0].ApplyPlayerUpgrade(player);
+                _upgrades[0].ApplyGunUpgrade(player.GunManager.CurrentGun);
                 GunManager.OnGunStatsUpdate?.Invoke();
             }
             else if (_stickAngle.RotationDegrees >= 50 && _stickAngle.RotationDegrees < 90)
             {
-                player.DecreaseaxHealth(1);
-                player.GunManager.CurrentGun.GunResource.Damage *= 1.1f;
+                //player.DecreaseaxHealth(1);
+                //player.GunManager.CurrentGun.GunResource.Damage *= 1.1f;
+                _upgrades[1].ApplyPlayerUpgrade(player);
+                _upgrades[1].ApplyGunUpgrade(player.GunManager.CurrentGun);
                 GunManager.OnGunStatsUpdate?.Invoke();
             }
             else
             {
-                player.GunManager.CurrentGun.GunResource.Damage *= 0.65f;
-                player.GunManager.CurrentGun.GunResource.FireRate *= 0.75f;
+                //player.GunManager.CurrentGun.GunResource.Damage *= 0.65f;
+                //player.GunManager.CurrentGun.GunResource.FireRate *= 0.75f;
+                _upgrades[2].ApplyPlayerUpgrade(player);
+                _upgrades[2].ApplyGunUpgrade(player.GunManager.CurrentGun);
                 GunManager.OnGunStatsUpdate?.Invoke();
+
             }
         }
         public override void _PhysicsProcess(double delta)
         {
             if(_stickAngle.RotationDegrees >= 30 && _stickAngle.RotationDegrees < 50)
             {
-                _desctEffectLabel.Text = "Less damage, but more speed";
+                _desctEffectLabel.Text = _upgrades[0].EffectDescription;//"Less damage, but more speed";
             }
             else if(_stickAngle.RotationDegrees >= 50 && _stickAngle.RotationDegrees < 90)
             {
-                _desctEffectLabel.Text = "Less Max health, but more damage";
+                _desctEffectLabel.Text = _upgrades[1].EffectDescription;//"Less Max health, but more damage";
 
             }
             else
             {
-                _desctEffectLabel.Text = "Less damage, but less firerate";
+                _desctEffectLabel.Text = _upgrades[2].EffectDescription; //"Less damage, but less firerate";
             }
         }
     }

@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce5ob8pafohgn"]
+[gd_scene load_steps=5 format=3 uid="uid://ce5ob8pafohgn"]
 
 [ext_resource type="Script" uid="uid://b17a2t5o1awwr" path="res://Gun/Weapons/ShotGun.cs" id="1_igahn"]
 [ext_resource type="Resource" uid="uid://jxgdr2gtdk1l" path="res://Gun/Weapons/ShotGun.tres" id="2_7xtps"]
 [ext_resource type="Texture2D" uid="uid://disxukf28mcfb" path="res://Art/shotgun.png" id="3_6pvhc"]
+[ext_resource type="AudioStream" uid="uid://w8j30xmgnt4w" path="res://Sounds/shotgun.wav" id="4_pffdj"]
 
-[node name="ShotGun" type="Node2D" node_paths=PackedStringArray("_spawnLocation")]
+[node name="ShotGun" type="Node2D" node_paths=PackedStringArray("_spawnLocation", "shotSound")]
 script = ExtResource("1_igahn")
 GunResource = ExtResource("2_7xtps")
 spreadShot = 12.0
 _spawnLocation = NodePath("Sprite2D/Marker2D")
+shotSound = NodePath("AudioStreamPlayer")
 
 [node name="FireRateTimer" type="Timer" parent="."]
 one_shot = true
@@ -20,3 +22,7 @@ texture = ExtResource("3_6pvhc")
 
 [node name="Marker2D" type="Marker2D" parent="Sprite2D"]
 position = Vector2(6.66667, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pffdj")
+bus = &"SFX"

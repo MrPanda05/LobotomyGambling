@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://b36tlcabmlh4b"]
 
-[ext_resource type="Texture2D" uid="uid://djo7acop0d488" path="res://icon.svg" id="1_bq4py"]
 [ext_resource type="Script" uid="uid://dq861u26sxayw" path="res://Enemies/EnemyBase.cs" id="1_k210i"]
 [ext_resource type="PackedScene" uid="uid://b4gnff5vltluy" path="res://Commons/Components/HitboxComponenent.tscn" id="2_6ijjn"]
 [ext_resource type="Resource" uid="uid://b28rcv5d8vbmw" path="res://Enemies/EnemySources/Slime.tres" id="2_d3qlt"]
 [ext_resource type="PackedScene" uid="uid://dmnmypbmd1j2j" path="res://Commons/Components/HealthComponent.tscn" id="2_x1af1"]
 [ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="3_7vcpx"]
 [ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="3_tflo0"]
+[ext_resource type="Texture2D" uid="uid://b0g66l2u7g2mv" path="res://Art/slime1.png" id="4_ql4ql"]
 [ext_resource type="Script" uid="uid://dkrbuyb1kiss7" path="res://Enemies/States/Sleepy.cs" id="4_rb56g"]
 [ext_resource type="Script" uid="uid://rxwss2ht1ygb" path="res://Enemies/Follow.cs" id="5_anohl"]
 
@@ -21,14 +21,15 @@ radius = 53.0094
 
 [node name="EnemyTest" type="CharacterBody2D"]
 collision_layer = 16
+collision_mask = 1153
 script = ExtResource("1_k210i")
 EnemyResource = ExtResource("2_d3qlt")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_x1af1")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.855, 0.855)
-texture = ExtResource("1_bq4py")
+scale = Vector2(7.38, 7.38)
+texture = ExtResource("4_ql4ql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_k4f0w")

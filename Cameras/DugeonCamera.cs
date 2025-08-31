@@ -19,5 +19,10 @@ namespace Cameras
         {
             Door.OnChangeCameraDirection += MoveCamera;
         }
+        public override void _ExitTree()
+        {
+            Door.OnChangeCameraDirection -= MoveCamera;
+
+        }
     }
 }

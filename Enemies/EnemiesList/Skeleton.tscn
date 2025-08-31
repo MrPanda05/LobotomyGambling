@@ -1,0 +1,80 @@
+[gd_scene load_steps=15 format=3 uid="uid://d06je4bybunup"]
+
+[ext_resource type="Script" uid="uid://dq861u26sxayw" path="res://Enemies/EnemyBase.cs" id="1_3y7un"]
+[ext_resource type="Resource" uid="uid://dygq0yddi8p7q" path="res://Enemies/EnemySources/Skeleton.tres" id="2_3y7un"]
+[ext_resource type="PackedScene" uid="uid://dmnmypbmd1j2j" path="res://Commons/Components/HealthComponent.tscn" id="3_ato18"]
+[ext_resource type="Texture2D" uid="uid://ej84pdmbnqda" path="res://Art/skeleton.png" id="4_3y7un"]
+[ext_resource type="PackedScene" uid="uid://b4gnff5vltluy" path="res://Commons/Components/HitboxComponenent.tscn" id="5_lm3yk"]
+[ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="6_mbgru"]
+[ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="7_shfd3"]
+[ext_resource type="Script" uid="uid://c5egao2vgx17b" path="res://Enemies/States/ThrowBone.cs" id="8_qrvnr"]
+[ext_resource type="PackedScene" uid="uid://e2cm2tdmpju" path="res://Enemies/BoneBullet.tscn" id="9_3y7un"]
+[ext_resource type="Script" uid="uid://4i4xl8qyau1x" path="res://Enemies/States/Wander.cs" id="10_rvfbw"]
+[ext_resource type="AudioStream" uid="uid://dflottdxweepg" path="res://Sounds/hitHurt3.wav" id="11_ato18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4f0w"]
+radius = 54.0093
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tflo0"]
+radius = 44.1022
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k210i"]
+radius = 53.0094
+
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("_audioStreamPlayer")]
+scale = Vector2(0.2, 0.2)
+collision_layer = 16
+collision_mask = 1153
+script = ExtResource("1_3y7un")
+EnemyResource = ExtResource("2_3y7un")
+_audioStreamPlayer = NodePath("AudioStreamPlayer")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_ato18")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(7.38, 7.38)
+texture = ExtResource("4_3y7un")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k4f0w")
+
+[node name="HitboxComponenent" parent="." instance=ExtResource("5_lm3yk")]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponenent"]
+shape = SubResource("CircleShape2D_tflo0")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("6_mbgru")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_k210i")
+
+[node name="FSM" parent="." instance=ExtResource("7_shfd3")]
+InitialState = NodePath("ThrowBone")
+
+[node name="ThrowBone" type="Node" parent="FSM"]
+script = ExtResource("8_qrvnr")
+_bulletbone = ExtResource("9_3y7un")
+
+[node name="Timer" type="Timer" parent="FSM/ThrowBone"]
+one_shot = true
+
+[node name="Wander" type="Node" parent="FSM" node_paths=PackedStringArray("_enemy", "_timer")]
+script = ExtResource("10_rvfbw")
+_wanderTime = 2.5
+_wanderRadius = 100.0
+stateOnWanderFinish = "ThrowBone"
+_enemy = NodePath("../..")
+_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="FSM/Wander"]
+wait_time = 2.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ato18")
+bus = &"SFX"
+
+[connection signal="timeout" from="FSM/ThrowBone/Timer" to="FSM/ThrowBone" method="OnTimerTimeout"]
+[connection signal="timeout" from="FSM/Wander/Timer" to="FSM/Wander" method="OnTimerTimeout"]
