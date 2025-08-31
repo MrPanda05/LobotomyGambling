@@ -69,6 +69,11 @@ namespace Levels.Rooms
                 }
             }
         }
+        public override void _ExitTree()
+        {
+            this._roomArea.BodyEntered -= OnRoomAreaBodyEntered;
+            this._roomArea.BodyExited -= OnRoomAreaBodyExited;
+        }
         public void OnRoomAreaBodyEntered(Node2D player)
         {
 

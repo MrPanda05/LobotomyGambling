@@ -56,5 +56,9 @@ namespace Gun.Weapons
             }
             _fireRateTimer.Start();
         }
+        public override void _ExitTree()
+        {
+            GunManager.OnGunStatsUpdate -= UpDatateStats;
+        }
     }
 }

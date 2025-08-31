@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcaaan0v4qlvk"]
+[gd_scene load_steps=4 format=3 uid="uid://bcaaan0v4qlvk"]
 
 [ext_resource type="Script" uid="uid://cped3qssee1p8" path="res://Commons/Autoloads/MinigameManager.cs" id="1_w7s13"]
 [ext_resource type="PackedScene" uid="uid://ci64hnbop8an3" path="res://Minigames/LobotomyMinigame.tscn" id="2_2nryy"]
+[ext_resource type="AudioStream" uid="uid://bxyxi6hsa5j40" path="res://Sounds/lobotomy.wav" id="3_t74nr"]
 
-[node name="MinigameManager" type="Node"]
+[node name="MinigameManager" type="Node" node_paths=PackedStringArray("minigameSoundEffectStart")]
 script = ExtResource("1_w7s13")
 MiniGames = Array[PackedScene]([ExtResource("2_2nryy")])
+minigameSoundEffectStart = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t74nr")
+bus = &"SFX"

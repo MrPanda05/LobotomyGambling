@@ -726,4 +726,4 @@ metadata/_edit_lock_ = true
 position = Vector2(322, 188)
 
 [node name="LobotomyPickup2" parent="." instance=ExtResource("24_8ubki")]
-position = Vector2(2564, -607)
+position = Vector2(1662, -616)

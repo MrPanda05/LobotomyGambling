@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://df0vo8wkmrux" path="res://Sounds/hitHurt2.wav" id="10_enjhy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k4f0w"]
-radius = 54.0093
+radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tflo0"]
 radius = 44.1022
@@ -23,7 +23,7 @@ radius = 53.0094
 [node name="SlimeBlue" type="CharacterBody2D" node_paths=PackedStringArray("_audioStreamPlayer")]
 scale = Vector2(0.4, 0.4)
 collision_layer = 16
-collision_mask = 1153
+collision_mask = 1169
 script = ExtResource("1_rh7w7")
 EnemyResource = ExtResource("2_enjhy")
 _audioStreamPlayer = NodePath("AudioStreamPlayer")
@@ -61,4 +61,5 @@ script = ExtResource("9_cummj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_enjhy")
+max_polyphony = 3
 bus = &"SFX"

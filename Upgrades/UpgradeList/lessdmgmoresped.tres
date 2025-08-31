@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_a5k2m")
-DamageMultiplier = 0.75
+DamageMultiplier = 0.85
 SpeedMultiplier = 1.25
 EffectDescription = "Less damage, more speed"
 metadata/_custom_type_script = "uid://bmv27umtfn5da"

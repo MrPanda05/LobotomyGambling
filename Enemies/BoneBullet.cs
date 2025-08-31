@@ -40,5 +40,9 @@ namespace Enemies
         {
             _direction = direction.Normalized();
         }
+        public override void _ExitTree()
+        {
+            _hitbox.OnBodyHit -= SelfDestroy;
+        }
     }
 }

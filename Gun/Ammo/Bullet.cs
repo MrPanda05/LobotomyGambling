@@ -58,5 +58,10 @@ namespace Gun.Ammo
             LifeTime = lifeTime;
             Penetration = penetration;
         }
+        public override void _ExitTree()
+        {
+            _hitbox.OnBodyHit -= SelfDestroy;
+        }
     }
+
 }

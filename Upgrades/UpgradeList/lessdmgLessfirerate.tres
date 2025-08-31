@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_jwevm")
-DamageMultiplier = 0.65
+DamageMultiplier = 0.75
 FireRateMultiplier = 0.6
 EffectDescription = "Less damage, less firing rate"
 metadata/_custom_type_script = "uid://bcnr07rf2tvly"

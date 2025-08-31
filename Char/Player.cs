@@ -118,6 +118,7 @@ namespace Char
         {
             _healthComponent.SetMaxHealth(_healthComponent.Health - amount);
             OnPlayerStatsUpdate?.Invoke();
+            GD.Print(_healthComponent.Health);
         }
 
         public void RequestStateChange(string stateName)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fjtdgucsyosm"]
+[gd_scene load_steps=14 format=3 uid="uid://fjtdgucsyosm"]
 
 [ext_resource type="Script" uid="uid://dq861u26sxayw" path="res://Enemies/EnemyBase.cs" id="1_fjq1h"]
 [ext_resource type="Resource" uid="uid://dbpnmvqq21o7g" path="res://Enemies/EnemySources/RedBall.tres" id="2_v6605"]
@@ -9,22 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="7_plulb"]
 [ext_resource type="Script" uid="uid://4i4xl8qyau1x" path="res://Enemies/States/Wander.cs" id="8_v6605"]
 [ext_resource type="Script" uid="uid://brjjf1sqsswb3" path="res://Enemies/States/Idle.cs" id="9_fjq1h"]
+[ext_resource type="AudioStream" uid="uid://df0vo8wkmrux" path="res://Sounds/hitHurt2.wav" id="10_jou0c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k4f0w"]
-radius = 54.0093
+radius = 25.4951
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tflo0"]
 radius = 44.1022
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k210i"]
-radius = 53.0094
+radius = 65.7647
 
-[node name="RedBall" type="CharacterBody2D"]
+[node name="RedBall" type="CharacterBody2D" node_paths=PackedStringArray("_audioStreamPlayer")]
 scale = Vector2(0.2, 0.2)
 collision_layer = 16
-collision_mask = 1153
+collision_mask = 1169
 script = ExtResource("1_fjq1h")
 EnemyResource = ExtResource("2_v6605")
+_audioStreamPlayer = NodePath("AudioStreamPlayer")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_cibbm")]
 
@@ -71,6 +73,10 @@ timer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="FSM/Idle"]
 wait_time = 0.09
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jou0c")
+max_polyphony = 3
 
 [connection signal="timeout" from="FSM/Wander/Timer" to="FSM/Wander" method="OnTimerTimeout"]
 [connection signal="timeout" from="FSM/Idle/Timer" to="FSM/Idle" method="OnTimerTimeout"]

@@ -12,6 +12,8 @@ namespace Commons.Autoloads
         public PackedScene[] MiniGames { get; private set; }
 
         public static Action<IMinigame> OnMinigameStart;
+        [Export]
+        public AudioStreamPlayer minigameSoundEffectStart;
 
         public override void _Ready()
         {
@@ -27,6 +29,7 @@ namespace Commons.Autoloads
             var minigame = MiniGames[id].Instantiate();
             GetTree().CurrentScene.AddChild(minigame);
             minigame.Call("Start");
+            minigameSoundEffectStart?.Play();
             OnMinigameStart?.Invoke((IMinigame)minigame);
         }
     }

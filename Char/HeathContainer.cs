@@ -18,7 +18,10 @@ namespace Char
             _player.Ready += StartHearts;
             _player.OnPlayerStatsUpdate += () => UpdateHearts(_player._healthComponent.Health, _player._healthComponent.MaxHealth);
         }
-
+        public override void _ExitTree()
+        {
+            _player.Ready -= StartHearts;
+        }
 
         public void StartHearts()
         {

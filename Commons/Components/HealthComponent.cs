@@ -25,7 +25,7 @@ namespace Commons.Components
             if (IsDead) return;
             Health -= damage;
             if (RoundToInt) Health = (int)Health;
-            if (Health <= 0)
+            if (Health < 0)
             {
                 Health = 0;
                 OnDeath?.Invoke();
@@ -53,7 +53,16 @@ namespace Commons.Components
         public void SetMaxHealth(float newMaxHealth)
         {
             MaxHealth = newMaxHealth;
+            if(MaxHealth < 0)
+            {
+                MaxHealth = 0;
+                Health = 0;
+            }
             if (RoundToInt) MaxHealth = (int)MaxHealth;
+            if(Health > MaxHealth)
+            {
+                Health = MaxHealth;
+            }
             OnHealthChange?.Invoke();
         }
         /// <summary>

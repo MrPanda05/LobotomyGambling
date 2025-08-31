@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://df0vo8wkmrux" path="res://Sounds/hitHurt2.wav" id="14_4bnfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_col26"]
-size = Vector2(39, 39)
+size = Vector2(25, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bgxc"]
 size = Vector2(32, 85)
@@ -46,7 +46,7 @@ scale = Vector2(3.925, 3.925)
 texture = ExtResource("4_pyd8o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, 26.5)
+position = Vector2(-3.5, 25.5)
 shape = SubResource("RectangleShape2D_col26")
 
 [node name="FSM" parent="." instance=ExtResource("2_v57ht")]

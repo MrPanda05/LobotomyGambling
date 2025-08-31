@@ -45,7 +45,7 @@ namespace Enemies
         {
             //add other logic here like flashing red or knockback
             GD.Print("I got hit: " + damage);
-            _audioStreamPlayer.Play();
+            _audioStreamPlayer?.Play();
             HealthComponenet.TakeDamage(damage);
         }
         public virtual void Attack()
@@ -56,6 +56,12 @@ namespace Enemies
         {
             OnDeath?.Invoke(this);
             QueueFree();
+        }
+        public override void _ExitTree()
+        {
+            Hitbox.OnAreaHit -= TestHitBox;
+            HealthComponenet.OnDeath -= Die;
+            Hurtbox.OnHit -= TestHurtBox;
         }
     }
 }
