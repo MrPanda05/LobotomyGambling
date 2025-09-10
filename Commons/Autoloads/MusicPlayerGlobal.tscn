@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://daxhyrrtj80m3"]
+
+[ext_resource type="Script" uid="uid://c0burxydgakxd" path="res://Commons/Autoloads/MusicPlayerGlobal.cs" id="1_a0j2y"]
+
+[node name="MusicPlayerGlobal" type="Node" node_paths=PackedStringArray("_musicPlayer")]
+script = ExtResource("1_a0j2y")
+_musicPlayer = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"

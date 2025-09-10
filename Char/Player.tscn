@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://1xwlmtgr22y3"]
+[gd_scene load_steps=18 format=3 uid="uid://1xwlmtgr22y3"]
 
 [ext_resource type="Script" uid="uid://cb8ycc7d7cxo5" path="res://Char/Player.cs" id="1_i7lnh"]
+[ext_resource type="AudioStream" uid="uid://bjn0u2adm77wi" path="res://Sounds/playerdeath.wav" id="2_4bnfu"]
 [ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="2_v57ht"]
 [ext_resource type="Script" uid="uid://cagfunlxupppg" path="res://Char/States/Playing.cs" id="4_nohbc"]
 [ext_resource type="Texture2D" uid="uid://d0ul2eeifddcv" path="res://Art/player.png" id="4_pyd8o"]
@@ -21,7 +22,7 @@ size = Vector2(25, 37)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bgxc"]
 size = Vector2(32, 85)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_hurtSound", "_imunityTimer") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_imunityTimer") groups=["Player"]]
 collision_layer = 32
 collision_mask = 1153
 collision_priority = 1.1
@@ -29,7 +30,8 @@ script = ExtResource("1_i7lnh")
 Speed = 350.0
 Acel = 150.0
 Decel = 200.0
-_hurtSound = NodePath("AudioStreamPlayer")
+_hurtSound = ExtResource("14_4bnfu")
+_deathSound = ExtResource("2_4bnfu")
 _imunityTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
@@ -200,10 +202,6 @@ scale = Vector2(0.23, 0.23)
 script = ExtResource("12_o15ra")
 HeartScene = ExtResource("13_o15ra")
 _player = NodePath("../../..")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_4bnfu")
-bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="timeout" from="FSM/ExitingDoor/Timer" to="FSM/ExitingDoor" method="OnTimerTimeout"]

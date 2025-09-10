@@ -1,3 +1,4 @@
+using Commons.Autoloads;
 using Commons.Components;
 using Commons.FiniteStateMachine;
 using Godot;
@@ -18,7 +19,9 @@ namespace Enemies
         private Sprite2D _sprite;
 
         [Export]
-        private AudioStreamPlayer _audioStreamPlayer;
+        private AudioStream _hitAudio;
+        [Export]
+        private AudioStream _deathSound;
 
         public override void _Ready()
         {
@@ -45,7 +48,8 @@ namespace Enemies
         {
             //add other logic here like flashing red or knockback
             GD.Print("I got hit: " + damage);
-            _audioStreamPlayer?.Play();
+            //_hitAudio?.Play();
+            AudioManager.Instance.PlaySound(_hitAudio, 0.8f, 1.3f, "SFX");
             HealthComponenet.TakeDamage(damage);
         }
         public virtual void Attack()
@@ -55,6 +59,7 @@ namespace Enemies
         public virtual void Die()
         {
             OnDeath?.Invoke(this);
+            AudioManager.Instance.PlaySound(_deathSound, 0.8f, 1.3f, "SFX");
             QueueFree();
         }
         public override void _ExitTree()

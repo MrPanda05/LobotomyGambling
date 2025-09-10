@@ -8,6 +8,7 @@ namespace Commons.Autoloads
     {
         public static GameManager Instance { get; private set; }
 
+        public RandomNumberGenerator RNG { get; private set; } = new RandomNumberGenerator();
         [Export]
         public bool IsDebugMode { get; set; } = false;
 
@@ -19,6 +20,7 @@ namespace Commons.Autoloads
                 return;
             }
             Instance = this;
+            RNG.Randomize();
         }
     }
 }

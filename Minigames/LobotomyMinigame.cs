@@ -26,6 +26,7 @@ namespace Minigames
         [Export]
         public UpgradeSource[] _upgrades;
 
+        private bool _isPressed;
 
         public override void _Ready()
         {
@@ -64,6 +65,7 @@ namespace Minigames
         }
         private void AddEffect(float angle)
         {
+            IsRunning = false;
             //upgrades shouldn't be herekkkkkkkkkkkkkkkkkk
             Player player = GetTree().GetFirstNodeInGroup("Player") as Player;
             if (_stickAngle.RotationDegrees >= 30 && _stickAngle.RotationDegrees < 50)
@@ -94,11 +96,30 @@ namespace Minigames
         }
         public override void _PhysicsProcess(double delta)
         {
-            if(_stickAngle.RotationDegrees >= 30 && _stickAngle.RotationDegrees < 50)
+            if (Input.IsActionJustPressed("space"))
+            {
+
+                if (IsRunning)
+                {
+                    AddEffect(_stickAngle.RotationDegrees);
+                    _animPlayer.Pause();
+                    _lobotomyBtn.Visible = false;
+                    _exitBtn.Visible = true;
+                }
+                else
+                {
+                    End();
+                }
+            }
+
+
+
+
+            if (_stickAngle.RotationDegrees >= 30 && _stickAngle.RotationDegrees < 50)
             {
                 _desctEffectLabel.Text = _upgrades[0].EffectDescription;//"Less damage, but more speed";
             }
-            else if(_stickAngle.RotationDegrees >= 50 && _stickAngle.RotationDegrees < 90)
+            else if (_stickAngle.RotationDegrees >= 50 && _stickAngle.RotationDegrees < 90)
             {
                 _desctEffectLabel.Text = _upgrades[1].EffectDescription;//"Less Max health, but more damage";
 

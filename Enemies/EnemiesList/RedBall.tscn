@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://fjtdgucsyosm"]
+[gd_scene load_steps=16 format=3 uid="uid://fjtdgucsyosm"]
 
 [ext_resource type="Script" uid="uid://dq861u26sxayw" path="res://Enemies/EnemyBase.cs" id="1_fjq1h"]
 [ext_resource type="Resource" uid="uid://dbpnmvqq21o7g" path="res://Enemies/EnemySources/RedBall.tres" id="2_v6605"]
 [ext_resource type="PackedScene" uid="uid://dmnmypbmd1j2j" path="res://Commons/Components/HealthComponent.tscn" id="3_cibbm"]
+[ext_resource type="AudioStream" uid="uid://dflottdxweepg" path="res://Sounds/hitHurt3.wav" id="3_ge0bi"]
+[ext_resource type="AudioStream" uid="uid://4virpryif4s" path="res://Sounds/enemydeath1.wav" id="4_6dub1"]
 [ext_resource type="Texture2D" uid="uid://c68p6i0013ig7" path="res://Art/ball.png" id="4_fjq1h"]
 [ext_resource type="PackedScene" uid="uid://b4gnff5vltluy" path="res://Commons/Components/HitboxComponenent.tscn" id="5_6dub1"]
 [ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="6_v2lib"]
@@ -20,13 +22,14 @@ radius = 44.1022
 [sub_resource type="CircleShape2D" id="CircleShape2D_k210i"]
 radius = 65.7647
 
-[node name="RedBall" type="CharacterBody2D" node_paths=PackedStringArray("_audioStreamPlayer")]
+[node name="RedBall" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
 collision_layer = 16
 collision_mask = 1169
 script = ExtResource("1_fjq1h")
 EnemyResource = ExtResource("2_v6605")
-_audioStreamPlayer = NodePath("AudioStreamPlayer")
+_hitAudio = ExtResource("3_ge0bi")
+_deathSound = ExtResource("4_6dub1")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_cibbm")]
 

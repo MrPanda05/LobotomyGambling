@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d06je4bybunup"]
+[gd_scene load_steps=17 format=3 uid="uid://d06je4bybunup"]
 
 [ext_resource type="Script" uid="uid://dq861u26sxayw" path="res://Enemies/EnemyBase.cs" id="1_3y7un"]
 [ext_resource type="Resource" uid="uid://dygq0yddi8p7q" path="res://Enemies/EnemySources/Skeleton.tres" id="2_3y7un"]
+[ext_resource type="AudioStream" uid="uid://b84i65gvx8ceh" path="res://Sounds/skeleton.wav" id="3_1ibsy"]
 [ext_resource type="PackedScene" uid="uid://dmnmypbmd1j2j" path="res://Commons/Components/HealthComponent.tscn" id="3_ato18"]
 [ext_resource type="Texture2D" uid="uid://ej84pdmbnqda" path="res://Art/skeleton.png" id="4_3y7un"]
+[ext_resource type="AudioStream" uid="uid://bfsdeey2243vu" path="res://Sounds/enemydeath2.wav" id="4_lm3yk"]
 [ext_resource type="PackedScene" uid="uid://b4gnff5vltluy" path="res://Commons/Components/HitboxComponenent.tscn" id="5_lm3yk"]
 [ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="6_mbgru"]
 [ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="7_shfd3"]
@@ -21,13 +23,14 @@ radius = 44.1022
 [sub_resource type="CircleShape2D" id="CircleShape2D_k210i"]
 radius = 53.0094
 
-[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("_audioStreamPlayer")]
+[node name="Skeleton" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
 collision_layer = 16
 collision_mask = 1169
 script = ExtResource("1_3y7un")
 EnemyResource = ExtResource("2_3y7un")
-_audioStreamPlayer = NodePath("AudioStreamPlayer")
+_hitAudio = ExtResource("3_1ibsy")
+_deathSound = ExtResource("4_lm3yk")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_ato18")]
 

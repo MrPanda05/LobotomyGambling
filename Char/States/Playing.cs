@@ -18,6 +18,7 @@ namespace Char.States
         {
             _player.Movement();
             _gunManager.SetShootDirection(_player.ShootInput());
+            
         }
     }
 }

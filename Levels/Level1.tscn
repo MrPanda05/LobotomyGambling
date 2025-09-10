@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cntaxec6gtjri"]
+[gd_scene load_steps=35 format=4 uid="uid://cntaxec6gtjri"]
 
 [ext_resource type="PackedScene" uid="uid://1xwlmtgr22y3" path="res://Char/Player.tscn" id="1_dl8mf"]
 [ext_resource type="PackedScene" uid="uid://cx6vr0snuqt63" path="res://Cameras/DugeonCamera.tscn" id="1_w77jt"]
@@ -31,6 +31,9 @@
 [ext_resource type="PackedScene" uid="uid://cphlt5ewf3t8v" path="res://Enemies/EnemiesList/WhiteSlime.tscn" id="25_jd565"]
 [ext_resource type="PackedScene" uid="uid://drgvt41102dbw" path="res://Levels/Rooms/onedoor/Room1d7.tscn" id="29_jd565"]
 [ext_resource type="Script" uid="uid://ivhant6bhcsi" path="res://Levels/BossRoom.cs" id="29_ruoxf"]
+[ext_resource type="PackedScene" uid="uid://bwv5mrexwhaoi" path="res://UI/GameMenuUi.tscn" id="32_sfcom"]
+[ext_resource type="PackedScene" uid="uid://bvjj5j5ju0lxj" path="res://Sounds/Music/PlayGlobalMusic.tscn" id="33_cmfp7"]
+[ext_resource type="AudioStream" uid="uid://cefwyvdgnf3ww" path="res://Sounds/Music/lobotomyGamePlay.wav" id="34_dk0xa"]
 
 [node name="Level1" type="Node2D"]
 
@@ -727,3 +730,9 @@ position = Vector2(322, 188)
 
 [node name="LobotomyPickup2" parent="." instance=ExtResource("24_8ubki")]
 position = Vector2(1662, -616)
+
+[node name="MenuUI" parent="." instance=ExtResource("32_sfcom")]
+visible = false
+
+[node name="PlayGlobalMusic" parent="." instance=ExtResource("33_cmfp7")]
+Music = ExtResource("34_dk0xa")

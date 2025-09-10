@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://i1hx1piw2kql"]
+
+[ext_resource type="Script" uid="uid://clbvyvvnhuyjj" path="res://UI/AudioSettings.cs" id="1_xqtab"]
+[ext_resource type="Theme" uid="uid://brnqcionk147x" path="res://Art/Themes/ButtonTheme1.tres" id="2_ntlib"]
+[ext_resource type="PackedScene" uid="uid://db41d6gq53ifw" path="res://UI/AudioSlider.tscn" id="2_vawx3"]
+
+[node name="AudioSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xqtab")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.270588, 0.411765, 0.564706, 1)
+
+[node name="ReturnButtton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 304.0
+offset_right = 352.0
+offset_bottom = 335.0
+theme = ExtResource("2_ntlib")
+text = "Return
+"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.178
+anchor_right = 0.9
+anchor_bottom = 0.844
+offset_top = -0.0800018
+offset_bottom = 0.159973
+mouse_filter = 2
+
+[node name="Master" parent="Control" instance=ExtResource("2_vawx3")]
+layout_mode = 1
+grow_horizontal = 1
+value = 25.0
+
+[node name="SFX" parent="Control" instance=ExtResource("2_vawx3")]
+layout_mode = 1
+offset_top = 112.0
+offset_bottom = 128.0
+value = 25.0
+BusName = "SFX"
+BusPort = 2
+
+[node name="Music" parent="Control" instance=ExtResource("2_vawx3")]
+layout_mode = 1
+offset_top = 176.0
+offset_bottom = 192.0
+value = 25.0
+BusName = "Music"
+BusPort = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 448.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 46
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="ReturnButtton" to="." method="OnReturnButttonButtonDown"]

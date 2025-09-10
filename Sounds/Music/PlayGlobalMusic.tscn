@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvjj5j5ju0lxj"]
+
+[ext_resource type="Script" uid="uid://cstqqng065fgr" path="res://Sounds/Music/PlayGlobalMusic.cs" id="1_eth1r"]
+
+[node name="PlayGlobalMusic" type="Node"]
+script = ExtResource("1_eth1r")

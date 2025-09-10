@@ -18,7 +18,7 @@ namespace Levels.Rooms
         public void WinGame()
         {
             GD.Print("You beat al the levels!!");
-            GetTree().ChangeSceneToFile("res://Levels/Level1.tscn");
+            GetTree().ChangeSceneToFile("res://UI/EndScreen.tscn");
         }
     }
 }

@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci64hnbop8an3"]
+[gd_scene load_steps=12 format=3 uid="uid://ci64hnbop8an3"]
 
 [ext_resource type="Script" uid="uid://bb07o0vsj3mxy" path="res://Minigames/LobotomyMinigame.cs" id="1_f54jq"]
 [ext_resource type="Resource" uid="uid://2e6eef518ibe" path="res://Upgrades/UpgradeList/lessdmgLessfirerate.tres" id="2_y1xfd"]
 [ext_resource type="Resource" uid="uid://c0ihp48mc40e6" path="res://Upgrades/UpgradeList/lessdmgmoresped.tres" id="3_hysxt"]
 [ext_resource type="Resource" uid="uid://p6b4d8fgn5he" path="res://Upgrades/UpgradeList/lesshpmoredamageUpgrade.tres" id="4_cjwd1"]
+[ext_resource type="Theme" uid="uid://brnqcionk147x" path="res://Art/Themes/ButtonTheme1.tres" id="5_1c6ee"]
 [ext_resource type="Texture2D" uid="uid://bxo8c2fqw0lq8" path="res://Art/lobotomyneedle256.png" id="5_y1xfd"]
 [ext_resource type="Texture2D" uid="uid://c7rhxtb6oce88" path="res://Art/head2.png" id="6_hysxt"]
+[ext_resource type="Theme" uid="uid://c38kgghj2qhlp" path="res://Art/Themes/ButtonTheme2.tres" id="6_qpqon"]
 
 [sub_resource type="Animation" id="Animation_rga8a"]
 length = 0.001
@@ -85,6 +87,7 @@ offset_right = 64.0
 offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("5_1c6ee")
 text = "Lobotomize"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/Panel"]
@@ -101,6 +104,7 @@ offset_right = 64.0
 offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("6_qpqon")
 text = "Exit"
 
 [node name="EffectPenl" type="Panel" parent="CanvasLayer/Control/Panel"]

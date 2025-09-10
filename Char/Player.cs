@@ -28,7 +28,9 @@ namespace Char
         public GunManager GunManager { get; private set; }
 
         [Export]
-        private AudioStreamPlayer _hurtSound;
+        private AudioStream _hurtSound;
+        [Export]
+        private AudioStream _deathSound;
         [Export]
         private Timer _imunityTimer;
 
@@ -47,7 +49,7 @@ namespace Char
             //add other logic here like flashing red or knockback, imunity frames
             GD.Print("Player got hit: " + damage);
             _healthComponent.TakeDamage(damage);
-            _hurtSound.Play();
+            AudioManager.Instance.PlaySound(_hurtSound, 0.9f, 1.1f, "SFX");
             _imunityTimer.Start();
             _hurtbox.ProcessMode = ProcessModeEnum.Disabled;
         }
@@ -57,12 +59,13 @@ namespace Char
         }
         private void Die()
         {
+            AudioManager.Instance.PlaySound(_deathSound, audioBus:"SFX");
             CallDeferred("RestartScene");
             GD.Print("Player Died");
         }
         public void RestartScene()
         {
-            GetTree().ChangeSceneToFile("res://Enemies/EnemySources/Fail.tscn");
+            GetTree().ChangeSceneToFile("res://UI/Fail.tscn");
         }
         public void Movement()
         {
