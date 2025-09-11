@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkm8ry2q5evix"]
+
+[ext_resource type="Script" uid="uid://51qxegpx1kd4" path="res://UI/PlayAnimationUI.cs" id="1_m63sg"]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+script = ExtResource("1_m63sg")

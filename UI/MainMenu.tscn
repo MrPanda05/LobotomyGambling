@@ -1,14 +1,76 @@
-[gd_scene load_steps=10 format=3 uid="uid://01h1k8oo1xl1"]
+[gd_scene load_steps=14 format=3 uid="uid://01h1k8oo1xl1"]
 
 [ext_resource type="Script" uid="uid://csq71nnbddseb" path="res://UI/Menu.cs" id="1_7w8gi"]
 [ext_resource type="Texture2D" uid="uid://c7rhxtb6oce88" path="res://Art/head2.png" id="1_y3h8d"]
 [ext_resource type="Texture2D" uid="uid://bxo8c2fqw0lq8" path="res://Art/lobotomyneedle256.png" id="2_mydrx"]
+[ext_resource type="Script" uid="uid://51qxegpx1kd4" path="res://UI/PlayAnimationUI.cs" id="4_d2d4f"]
 [ext_resource type="Theme" uid="uid://brnqcionk147x" path="res://Art/Themes/ButtonTheme1.tres" id="4_otjfi"]
 [ext_resource type="Script" uid="uid://b2x5223laxmfq" path="res://Enemies/EnemySources/Keys.gd" id="4_widpp"]
 [ext_resource type="Theme" uid="uid://c38kgghj2qhlp" path="res://Art/Themes/ButtonTheme2.tres" id="5_obtq6"]
 [ext_resource type="PackedScene" uid="uid://i1hx1piw2kql" path="res://UI/AudioSettings.tscn" id="5_y6s48"]
 [ext_resource type="PackedScene" uid="uid://bvjj5j5ju0lxj" path="res://Sounds/Music/PlayGlobalMusic.tscn" id="8_w5vcv"]
 [ext_resource type="AudioStream" uid="uid://c7bg4rxyxw436" path="res://Sounds/Music/lobotomyTitlescreen.wav" id="9_d2d4f"]
+
+[sub_resource type="Animation" id="Animation_w5vcv"]
+resource_name = "Bobing"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [48, 52, 48]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0174533, 0.0, 0.0174533]
+}
+
+[sub_resource type="Animation" id="Animation_d2d4f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [45]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6vw7e"]
+_data = {
+&"Bobing": SubResource("Animation_w5vcv"),
+&"RESET": SubResource("Animation_d2d4f")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -56,21 +118,29 @@ texture = ExtResource("2_mydrx")
 
 [node name="Label" type="Label" parent="Menu"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.275
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.275
 offset_left = -256.0
-offset_top = -116.0
+offset_top = -35.0
 offset_right = 257.0
-offset_bottom = -46.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 51
+pivot_offset = Vector2(256.5, 35)
+theme_override_font_sizes/font_size = 45
 text = "Lobotomy Gambling!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_6vw7e")
+}
+script = ExtResource("4_d2d4f")
+_animName = "Bobing"
 
 [node name="Button" type="Button" parent="Menu"]
 layout_mode = 0

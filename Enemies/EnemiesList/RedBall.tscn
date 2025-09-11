@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fjtdgucsyosm"]
+[gd_scene load_steps=20 format=3 uid="uid://fjtdgucsyosm"]
 
 [ext_resource type="Script" uid="uid://dq861u26sxayw" path="res://Enemies/EnemyBase.cs" id="1_fjq1h"]
 [ext_resource type="Resource" uid="uid://dbpnmvqq21o7g" path="res://Enemies/EnemySources/RedBall.tres" id="2_v6605"]
@@ -8,10 +8,48 @@
 [ext_resource type="Texture2D" uid="uid://c68p6i0013ig7" path="res://Art/ball.png" id="4_fjq1h"]
 [ext_resource type="PackedScene" uid="uid://b4gnff5vltluy" path="res://Commons/Components/HitboxComponenent.tscn" id="5_6dub1"]
 [ext_resource type="PackedScene" uid="uid://bjlmwrshv4r7w" path="res://Commons/Components/HurtboxComponent.tscn" id="6_v2lib"]
+[ext_resource type="PackedScene" uid="uid://bkm8ry2q5evix" path="res://UI/PlayerAnimationUI.tscn" id="7_6dub1"]
 [ext_resource type="PackedScene" uid="uid://d2o62y0ipeexj" path="res://Commons/FiniteStateMachine/FSM.tscn" id="7_plulb"]
 [ext_resource type="Script" uid="uid://4i4xl8qyau1x" path="res://Enemies/States/Wander.cs" id="8_v6605"]
 [ext_resource type="Script" uid="uid://brjjf1sqsswb3" path="res://Enemies/States/Idle.cs" id="9_fjq1h"]
 [ext_resource type="AudioStream" uid="uid://df0vo8wkmrux" path="res://Sounds/hitHurt2.wav" id="10_jou0c"]
+
+[sub_resource type="Animation" id="Animation_v2lib"]
+resource_name = "scale"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7.38, 7.38), Vector2(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_plulb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7.38, 7.38)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uke43"]
+_data = {
+&"RESET": SubResource("Animation_plulb"),
+&"scale": SubResource("Animation_v2lib")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k4f0w"]
 radius = 25.4951
@@ -36,6 +74,12 @@ _deathSound = ExtResource("4_6dub1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(7.38, 7.38)
 texture = ExtResource("4_fjq1h")
+
+[node name="AnimationPlayer" parent="Sprite2D" instance=ExtResource("7_6dub1")]
+libraries = {
+&"": SubResource("AnimationLibrary_uke43")
+}
+_animName = "scale"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_k4f0w")
